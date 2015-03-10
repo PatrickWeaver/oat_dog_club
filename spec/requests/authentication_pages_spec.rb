@@ -11,7 +11,6 @@ describe "Authentication" do
     it { should have_title('Sign in') }
   end
 
-
   describe "signin" do
     before { visit signin_path }
 
@@ -22,13 +21,12 @@ describe "Authentication" do
       it { should have_selector('div.alert.alert-danger') }
 
       describe "after visiting another page" do
-        before { click_link "About" }
-        it { should_not have_selector('div.alert.alert-danger') }
+        before { click_link "Home" }
+        it { should_not have_selector('div.alert.alert-error') }
       end
     end
 
     describe "with valid information" do
-      before { visit signin_path }
       let(:user) { FactoryGirl.create(:user) }
       before do
         fill_in "Email",    with: user.email.upcase
@@ -41,18 +39,9 @@ describe "Authentication" do
       it { should have_link('Sign out',    href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
 
-      describe "after saving the user" do
-        before { click_button submit }
-        let(:user) { User.find_by(email: 'user@example.com') }
-
-        it { should have_link('Sign out') }
-        it { should have_title(full_title(user.name)) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-
-        describe "followed by signout" do
-          before { click_link "Sign out" }
-          it { should have_link('Sign in') }
-        end
+      describe "followed by signout" do
+        before { click_link "Sign out" }
+        it { should have_link('Sign in') }
       end
     end
   end
