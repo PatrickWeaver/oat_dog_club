@@ -193,7 +193,17 @@ input {
 }
 
 
+/* Users index */
 
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
 
 
 
@@ -222,6 +232,13 @@ header {
         }
       }
     }
+  }
+}
+
+.users {
+  li {
+    background-color:rgba(238,238,238,0.85);
+    margin-bottom: 4px;
   }
 }
 
