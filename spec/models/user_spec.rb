@@ -16,6 +16,10 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:authorships) }
+  it { should respond_to(:zines) }
+  it { should respond_to(:authoring?) }
+  it { should respond_to(:become_author!) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -113,6 +117,40 @@ describe User do
   describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe "authoring a zine" do
+    let(:new_zine) { FactoryGirl.create(:zine) }
+    before do
+      @user.save
+      @user.become_author!(new_zine)
+    end
+
+    it { should be_authoring(new_zine) }
+    its(:zines) { should include(new_zine) }
+
+    describe "removing authorship on a zine" do
+      before { @user.remove_author!(new_zine) }
+
+      it { should_not be_authoring(new_zine) }
+      its(:zines) { should_not include(new_zine) }
+    end
+  end
+
+  describe "zine associations" do
+
+    let!(:b_zine) { FactoryGirl.create(:zine, title: "B Zine", created_at: 1.day.ago) }
+    let!(:a_zine) { FactoryGirl.create(:zine, title: "A Zine", created_at: 1.hour.ago) }
+    before do
+      @user.save
+      @user.become_author!(a_zine)
+      @user.become_author!(b_zine)
+    end
+
+    it { should be_authoring(a_zine) }
+    it { should be_authoring(b_zine) }
+    its(:zines) { should include(a_zine) }
+    its(:zines) { should include(b_zine) }
   end
 end
 

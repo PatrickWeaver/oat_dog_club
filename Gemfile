@@ -8,6 +8,8 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'acts_as_list'
+gem 'table_print'
 
 
 group :development, :test do

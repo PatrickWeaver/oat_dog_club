@@ -3,6 +3,7 @@ OatDogClub::Application.routes.draw do
   root 'static_pages#home'
 
   resources :users
+  resources :zines
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/help',    to: 'static_pages#help',    via: 'get'

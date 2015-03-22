@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :authorships, ->{ order 'position' }, dependent: :destroy
+  has_many :zines, through: :authorships
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token
@@ -17,6 +19,18 @@ class User < ActiveRecord::Base
 
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def authoring?(zine)
+    authorships.find_by(zine_id: zine.id)
+  end
+
+  def become_author!(zine)
+    authorships.create!(zine_id: zine.id)
+  end
+
+  def remove_author!(zine)
+    authorships.find_by(zine_id: zine.id).destroy
   end
 
   private

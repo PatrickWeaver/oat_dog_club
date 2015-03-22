@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311035723) do
+ActiveRecord::Schema.define(version: 20150322151230) do
+
+  create_table "authorships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "zine_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position"
+  end
+
+  add_index "authorships", ["user_id", "zine_id"], name: "index_authorships_on_user_id_and_zine_id", unique: true
+  add_index "authorships", ["user_id"], name: "index_authorships_on_user_id"
+  add_index "authorships", ["zine_id"], name: "index_authorships_on_zine_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -25,5 +37,14 @@ ActiveRecord::Schema.define(version: 20150311035723) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "zines", force: true do |t|
+    t.string   "title"
+    t.boolean  "published",  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "zines", ["title", "created_at", "updated_at"], name: "index_zines_on_title_and_created_at_and_updated_at"
 
 end

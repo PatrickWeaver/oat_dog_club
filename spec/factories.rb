@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :user do
     sequence(:name)  { |n| "Person #{n}" }
     sequence(:email) { |n| "person_#{n}@example.com"}
@@ -9,4 +10,14 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :zine do
+    sequence(:title) { |n| "Zine #{n}" }
+    published true
+
+    factory :unpublished_zine do
+      published false
+    end
+  end
+
 end

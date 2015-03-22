@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @zines = User.find(params[:id]).zines
   end
 
   def index
