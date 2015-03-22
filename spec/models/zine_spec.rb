@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe Zine do
-  before do
-    #blah
-    @zine = Zine.new(title: "First Zine")
-  end
+
+  let(:user) {FactoryGirl.create(:user) }
+  before { @zine = user.zines.build(title: "First Zine")}
 
   subject { @zine }
 
@@ -14,6 +13,7 @@ describe Zine do
   it { should respond_to(:users) }
   it { should respond_to(:written_by?) }
   it { should respond_to(:add_author!) }
+  it { should respond_to(:paragraphs) }
 
   it { should be_valid }
   it { should_not be_published }
@@ -47,6 +47,29 @@ describe Zine do
 
       it { should_not be_written_by(new_author) }
       its(:users) { should_not include(new_author) }
+    end
+  end
+
+  describe "paragraph associations" do
+    before { @zine.save }
+    let!(:second_paragraph) do
+      FactoryGirl.create(:paragraph, zine: @zine, position: 2)
+    end
+    let!(:first_paragraph) do
+      FactoryGirl.create(:paragraph, zine: @zine, position: 1)
+    end
+
+    it "should have the paragraphs in the right order" do
+      expect(@zine.paragraphs.to_a).to eq [first_paragraph, second_paragraph]
+    end
+
+    it "should destroy associated paragraphs" do
+      paragraphs = @zine.paragraphs.to_a
+      @zine.destroy
+      expect(paragraphs).not_to be_empty
+      paragraphs.each do |paragraph|
+        expect(Paragraph.where(id: paragraph.id)).to be_empty
+      end
     end
   end
 

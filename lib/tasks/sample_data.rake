@@ -4,6 +4,7 @@ namespace :db do
     make_users
     make_zines
     make_authorships
+    make_paragraphs
   end
 end
 
@@ -44,6 +45,31 @@ def make_authorships
     user.become_author!(zine1)
     user.become_author!(zine2)
     user.become_author!(zine3)
+  end
+end
+
+def make_paragraphs
+  color_lib = ['00FFFF', '8A2BE2', 'DC143C', 'B8860B', '228B22', 'ADFF2F', '778899', 'FFA500', 'FF4500', 'D8BFD8']
+  10.times do |n|
+    header = Faker::Lorem.sentence
+    content = Faker::Lorem.paragraph
+
+    m = n
+    if n >= color_lib.length
+      m = n-color_lib.length
+    end
+    border_color = color_lib[m]
+
+    per = (n+1)/3.0
+    zine_id = per.ceil
+    position = (n % 3.0) + 1
+
+    Paragraph.create!(header: header,
+                      content: content,
+                      border_color: border_color,
+                      position: position,
+                      zine_id: zine_id
+                      )
   end
 end
 

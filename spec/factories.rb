@@ -20,4 +20,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :paragraph do
+    sequence(:header) { |n| "Paragraph #{n}" }
+    sequence(:content) { |n| "This is the number #{n} paragraph" }
+    zine
+  end
+
 end

@@ -1,3 +1,14 @@
-<h1>
+<% provide(:title, @zine.title) %>
+
+<h1 class="background">
 <%= @zine.title %>
 </h1>
+
+<div class="col-md-8">
+  <% if @zine.paragraphs.any? %>
+    <ol class="zines">
+      <%= render @paragraphs %>
+    </ol>
+    <%= will_paginate @paragraphs %>
+  <% end %>
+</div>

@@ -1,6 +1,8 @@
 class Zine < ActiveRecord::Base
-  has_many :authorships, dependent: :destroy
+  has_many :authorships, ->{ order 'position' }, dependent: :destroy
   has_many :users, through: :authorships
+
+  has_many :paragraphs, dependent: :destroy
 
   validates :title, presence: true
 

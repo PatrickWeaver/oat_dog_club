@@ -10,6 +10,7 @@ gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'acts_as_list'
 gem 'table_print'
+gem 'color', '~> 1.7.1'
 
 
 group :development, :test do
