@@ -75,6 +75,7 @@ def make_paragraphs
 end
 
 def make_images
+  color_lib2 = ['00F48F', '8AE3A2', 'B6C43C', 'BD360B', '2F0122', 'A6B42F', '7E8E99', 'F84100', 'F5E700', 'D2D8D8']
   10.times do |n|
     url = "/assets/#{n}.png"
 
@@ -111,6 +112,8 @@ def make_images
       false
     end
 
+    border_color = color_lib2[n]
+
 
 
     Image.create!(  url: url,
@@ -120,7 +123,8 @@ def make_images
                     height: height,
                     width: width,
                     caption: caption,
-                    display_caption: display_caption
+                    display_caption: display_caption,
+                    border_color: border_color
                     )
   end
 end

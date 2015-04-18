@@ -1,10 +1,10 @@
-<li id="paragraph-<%= paragraph.id  %>" class="background" style="border: 10px solid #<%= paragraph.border_color %>">
+<li id="paragraph-<%= paragraph.id  %>" class="background paragraph" style="border: 10px solid #<%= paragraph.border_color %>">
 
   <h2 class="p-header"><%= paragraph.header %></h2>
   <span class="content"><%= paragraph.content %></span><br>
   <span class="content"><%= paragraph.id %></span>
 
-  <ul>
+  <ul class="zines">
   <%= render partial: 'shared/image', collection: Image.where(paragraph: paragraph ) %>
   </ul>
 </li>

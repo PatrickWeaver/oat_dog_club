@@ -255,6 +255,23 @@ header {
   margin: 10px;
 }
 
+.zine-image-li {
+  display: inline-block;
+  position: relative;
+
+}
+
+.zine-image {
+}
+
+.infoblah {
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+}
+
 ol {
   padding: 0;
 }
@@ -263,6 +280,25 @@ ol {
   list-style-type: none;
   list-style-image: none;
   list-style-position: outside;
+
+  text-align: center;
+}
+
+.images {
+  list-style-type: none;
+  list-style-image: none;
+  list-style-position: outside;
+  text-align: center;
+}
+
+.content {
+
+}
+
+.paragraph {
+    text-align: left;
+
+
 }
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410211237) do
+ActiveRecord::Schema.define(version: 20150418211030) do
 
   create_table "authorships", force: true do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150410211237) do
     t.boolean  "display_caption", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "border_color",    default: "000000"
   end
 
   add_index "images", ["zine_id", "caption", "created_at"], name: "index_images_on_zine_id_and_caption_and_created_at"
