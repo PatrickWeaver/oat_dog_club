@@ -1,21 +1,36 @@
-<li id="image-<%= image.id  %>" class="zine-image-li" style="border: 10px solid #<%= image.border_color %>">
-  <% if image.url != '' %>
-    <img src="<%= image.url %>" class="zine-image">
-  <% end %>
-  <br>
-  <div class="infoblah">
-    id: <%= image.id %><br>
-    image cover: <%= image.cover %><br>
-    p ID: <%= image.paragraph_id %><br>
-    height: <%= image.height %><br>
-    width: <%= image.width %><br>
-    display caption?
-      <% if image.display_caption %>
-        true
-      <% else %>
-        false
-      <% end %><br>
-    <% if image.display_caption %>caption: <%= image.try(:caption) %><br><% end %>
-    border color: <%= image.border_color %>
-  </div>
-</li><br><br>
+<% if !image.cover %>
+  <li id="image-<%= image.id  %>" class="zine-image-li" style="border: 10px solid #<%= image.border_color %>;  width: <%= image.width + 20 %>px;">
+
+    <% if image.url != '' %>
+      <img src="<%= image.url %>" class="zine-image" style="height: <%= image.height %>px; width: <%= image.width %>px;">
+    <% end %>
+
+    <br>
+
+    <div class="infoblah">
+      id: <%= image.id %><br>
+      url: <%= image.url %><br>
+      image cover: <%= image.cover %><br>
+      p ID: <%= image.paragraph_id %><br>
+      height: <%= image.height %><br>
+      width: <%= image.width %><br>
+      display caption?
+        <% if image.display_caption %>
+          true
+        <% else %>
+          false
+        <% end %><br>
+      <% if image.display_caption %>caption: <%= image.try(:caption) %><br><% end %>
+      border color: <%= image.border_color %>
+    </div>
+
+    <% if image.display_caption %>
+      <div class="caption">
+        <%= image.try(:caption) %><br>
+      </div>
+    <% end %>
+
+  </li>
+
+  <br><br>
+<% end %>

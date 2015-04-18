@@ -249,6 +249,29 @@ header {
   margin: 10px;
 }
 
+.zine-title-container {
+  position: relative;
+  z-index: -1000;
+  text-align: center;
+
+}
+
+.zine-title {
+  background-color:rgba(238,238,238,0.85);
+  padding: 10px;
+  display: inline-block;
+
+}
+
+.zine-cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -500;
+}
+
 .image-background {
   background-color:rgba(180,180,180,0.7);
   padding: 5px;
@@ -258,6 +281,7 @@ header {
 .zine-image-li {
   display: inline-block;
   position: relative;
+  box-sizing: border-box;
 
 }
 
@@ -298,6 +322,13 @@ ol {
 .paragraph {
     text-align: left;
 
+
+}
+
+.caption {
+  background-color: #EEEEEE;
+  padding: 10px;
+  text-align: left;
 
 }
 

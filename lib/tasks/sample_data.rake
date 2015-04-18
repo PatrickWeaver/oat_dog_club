@@ -77,7 +77,7 @@ end
 def make_images
   color_lib2 = ['00F48F', '8AE3A2', 'B6C43C', 'BD360B', '2F0122', 'A6B42F', '7E8E99', 'F84100', 'F5E700', 'D2D8D8']
   10.times do |n|
-    url = "/assets/#{n}.png"
+    url = "/assets/#{n+1}.png"
 
     per = (n+1)/5.0
     zine_id = per.ceil
