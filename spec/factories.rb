@@ -22,8 +22,12 @@ FactoryGirl.define do
 
   factory :paragraph do
     sequence(:header) { |n| "Paragraph #{n}" }
-    sequence(:content) { |n| "This is the number #{n} paragraph" }
-    zine
+    sequence(:content) { |m| "This is the number #{m} paragraph" }
+  end
+
+  factory :image do
+    sequence(:url, 0) { |o| "/assets/#{o}.png" }
+    caption { Faker::Lorem.sentence }
   end
 
 end

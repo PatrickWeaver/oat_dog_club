@@ -7,9 +7,23 @@
       <%= @user.name %>
       </h1>
       <h1>
+      URL: <%= @user.profile_picture.url %>
+      </h1>
+            <h1>
+      email: <%= @user.email %>
+      </h1>
+            <h1>
+      PW: <%= @user.password %>
+      </h1>
+
+
+      <% if @user.profile_picture.url != '' %>
+        <img src="<%= @user.profile_picture.url %>" height="200" >
+        <h1>
+      <% end %>
         <% if @zines.any? %>
           <ul>
-            <%= render partial: 'shared/zine', collection: @zines %>
+            <%=  render partial: 'shared/zine', collection: @zines %>
           </ul>
         <% end %>
       </h1>

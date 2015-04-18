@@ -14,6 +14,7 @@ describe Zine do
   it { should respond_to(:written_by?) }
   it { should respond_to(:add_author!) }
   it { should respond_to(:paragraphs) }
+  it { should respond_to(:images) }
 
   it { should be_valid }
   it { should_not be_published }
@@ -69,6 +70,26 @@ describe Zine do
       expect(paragraphs).not_to be_empty
       paragraphs.each do |paragraph|
         expect(Paragraph.where(id: paragraph.id)).to be_empty
+      end
+    end
+  end
+
+   describe "image associations" do
+
+    before { @zine.save }
+    let!(:image1) do
+      FactoryGirl.create(:image, zine: @zine)
+    end
+    let!(:image2) do
+      FactoryGirl.create(:image, zine: @zine)
+    end
+
+    it " should destroy associated images when a zine is destroyed" do
+      images = @zine.images.to_a
+      @zine.destroy
+      expect(images).not_to be_empty
+      images.each do |image|
+        expect(Image.where(id: image.id)).to be_empty
       end
     end
   end

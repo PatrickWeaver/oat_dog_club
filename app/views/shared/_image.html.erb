@@ -1,0 +1,18 @@
+<li id="image-<%= image.id  %>" class="background">
+  <% if image.url != '' %>
+    <img src="<%= image.url %>" >
+  <% end %>
+  <br>
+  id: <%= image.id %><br>
+  image cover: <%= image.cover %><br>
+  p ID: <%= image.paragraph_id %><br>
+  height: <%= image.height %><br>
+  width: <%= image.width %><br>
+  display caption?
+    <% if image.display_caption %>
+      true
+    <% else %>
+      false
+    <% end %><br>
+  <% if image.display_caption %>caption: <%= image.try(:caption) %><br><% end %>
+</li>

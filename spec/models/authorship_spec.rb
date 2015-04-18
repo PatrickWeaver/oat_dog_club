@@ -23,4 +23,5 @@ describe Authorship do
     before { authorship.zine_id = nil }
     it { should_not be_valid }
   end
+
 end

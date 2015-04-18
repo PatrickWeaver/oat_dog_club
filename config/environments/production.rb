@@ -81,4 +81,13 @@ OatDogClub::Application.configure do
   config.serve_static_assets = true
     config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
     config.assets.compile = true
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['s3BUCKET'],
+      :access_key_id => ENV['AWSAccessKeyId'],
+      :secret_access_key => ENV['AWSSecretKey']
+    }
+  }
 end

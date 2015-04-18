@@ -14,6 +14,7 @@ describe Paragraph do
   it { should respond_to(:zine_id) }
   it { should respond_to(:zine) }
   its(:zine) { should eq zine }
+  it { should respond_to(:images) }
 
   it { should be_valid }
 

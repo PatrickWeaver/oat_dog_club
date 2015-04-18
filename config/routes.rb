@@ -4,6 +4,7 @@ OatDogClub::Application.routes.draw do
 
   resources :users
   resources :zines
+  resources :images
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/help',    to: 'static_pages#help',    via: 'get'
@@ -12,6 +13,7 @@ OatDogClub::Application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/zines/:id/publish-unpublish', to: 'zines#publish', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

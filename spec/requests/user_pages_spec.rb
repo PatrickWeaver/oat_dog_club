@@ -33,6 +33,7 @@ describe "UserPages" do
 
       it { should_not have_link('delete') }
 
+
       describe "as an admin user" do
         let(:admin) { FactoryGirl.create(:admin) }
         before do
@@ -103,6 +104,64 @@ describe "UserPages" do
     it { should have_content(user.name) }
     it { should have_title(full_title(user.name)) }
 
+    describe "zines" do
+      let!(:zine) { FactoryGirl.create(:zine) }
+      before do
+        zine.add_author!(user)
+      end
+
+      describe "zine" do
+        subject { zine }
+        it { should be_written_by(user) }
+      end
+
+      describe "user page" do
+        before { visit user_path(user) }
+        subject { page }
+        it { should have_content(zine.title) }
+
+        describe "delete and publish/unpublish links" do
+          it { should_not have_link('delete') }
+          it { should_not have_link('publish') }
+          it { should_not have_link('unpublish') }
+        end
+
+        describe "as an admin user" do
+          let(:admin) { FactoryGirl.create(:admin) }
+          before do
+            sign_in admin
+            visit user_path(user)
+          end
+
+          it { should have_link('unpublish' )}
+
+          it { should have_link('delete', href: zine_path(zine)) }
+          it "should be able to delete the zine" do
+            expect do
+              click_link('delete', match: :first)
+            end.to change(Zine, :count).by(-1)
+          end
+        end
+ 
+        describe "as current user" do
+          let!(:zine2) { FactoryGirl.create(:zine) }
+          before do
+            zine2.add_author!(user)
+          end
+          before do
+            sign_in user
+            visit user_path(user)
+          end
+
+          it { should have_link('delete', href: zine_path(zine2)) }
+          it "should be able to delete the zine" do
+            expect do
+              click_link('delete', match: :first)
+            end.to change(Zine, :count).by(-1)
+          end
+        end
+      end
+    end
   end
 
   describe "edit" do

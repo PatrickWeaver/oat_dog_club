@@ -1,14 +1,30 @@
 <% provide(:title, @zine.title) %>
 
 <h1 class="background">
-<%= @zine.title %>
+  <%= @zine.title %>
 </h1>
+<br>
+<span class="background"><%= @user %> -- <% if @zine.published? %>Published<% else %>Unpublished<% end %></span>
+<br><br>
 
-<div class="col-md-8">
+
+<div class="">
   <% if @zine.paragraphs.any? %>
+    <%= will_paginate @paragraphs %>
     <ol class="zines">
-      <%= render @paragraphs %>
+
+      <%= render partial: 'paragraphs/paragraph', collection: @paragraphs %>
+
     </ol>
     <%= will_paginate @paragraphs %>
+  <% end %>
+  <% if @zine.images.any? %>
+    <%= will_paginate @images %>
+    <ol class="images">
+
+      <%= render partial: 'shared/image', collection: @images %>
+
+    </ol>
+    <%= will_paginate @images %>
   <% end %>
 </div>

@@ -1,6 +1,7 @@
 class Paragraph < ActiveRecord::Base
 
   belongs_to :zine
+  has_many :images
 
   default_scope -> { order('position') }
 

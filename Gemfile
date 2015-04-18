@@ -11,6 +11,9 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'acts_as_list'
 gem 'table_print'
 gem 'color', '~> 1.7.1'
+gem 'aws-sdk', '~> 1.5.7'
+gem 'figaro'
+gem 'paperclip', '~> 4.2'
 
 
 group :development, :test do
@@ -29,7 +32,6 @@ gem 'sprockets', '2.11.0'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
-gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 
 group :doc do

@@ -3,6 +3,7 @@ class Zine < ActiveRecord::Base
   has_many :users, through: :authorships
 
   has_many :paragraphs, dependent: :destroy
+  has_many :images, dependent: :destroy
 
   validates :title, presence: true
 
@@ -17,5 +18,7 @@ class Zine < ActiveRecord::Base
   def remove_author!(author)
     authorships.find_by(user_id: author.id).destroy
   end
+
+  
 
 end

@@ -20,6 +20,7 @@ describe User do
   it { should respond_to(:zines) }
   it { should respond_to(:authoring?) }
   it { should respond_to(:become_author!) }
+  it { should respond_to(:profile_picture) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -126,14 +127,27 @@ describe User do
       @user.become_author!(new_zine)
     end
 
-    it { should be_authoring(new_zine) }
-    its(:zines) { should include(new_zine) }
+    describe "user relations" do
+      it { should be_authoring(new_zine) }
+      its(:zines) { should include(new_zine) }
+    end
 
-    describe "removing authorship on a zine" do
-      before { @user.remove_author!(new_zine) }
+    describe "zine relations" do
+      subject { new_zine }
 
-      it { should_not be_authoring(new_zine) }
-      its(:zines) { should_not include(new_zine) }
+      its(:users) { should include(@user) }
+    end
+
+    describe "removing" do
+
+      subject { @user }
+
+      describe "authorship on a zine" do
+        before { @user.unbecome_author!(new_zine) }
+
+        it { should_not be_authoring(new_zine) }
+        its(:zines) { should_not include(new_zine) }
+      end
     end
   end
 

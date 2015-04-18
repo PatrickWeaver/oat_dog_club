@@ -21,7 +21,7 @@ describe "Authentication" do
       it { should have_selector('div.alert.alert-danger') }
 
       describe "after visiting another page" do
-        before { click_link "Home" }
+        before { click_link "Oat Dog Club" }
         it { should_not have_selector('div.alert.alert-error') }
       end
     end
@@ -75,11 +75,6 @@ describe "Authentication" do
           before { patch user_path(user) }
           specify { expect(response).to redirect_to(signin_path) }
         end
-
-        describe "visiting the user index" do
-          before { visit users_path }
-          it { should have_title('Sign in') }
-        end
       end
     end
 
@@ -103,6 +98,7 @@ describe "Authentication" do
     describe "as non-admin user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:non_admin) { FactoryGirl.create(:user) }
+      let(:zine) { FactoryGirl.create(:zine) }
 
       before { sign_in non_admin, no_capybara: true }
 

@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 4 }
 
+  has_attached_file :profile_picture, :default_url => "/assets/oatpattern2.jpg"
+  validates_with AttachmentContentTypeValidator, :attributes => :profile_picture, :content_type => /\Aimage\/.*\Z/
+  validates_with AttachmentSizeValidator, :attributes => :profile_picture, :less_than => 3.megabytes
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
@@ -29,7 +33,7 @@ class User < ActiveRecord::Base
     authorships.create!(zine_id: zine.id)
   end
 
-  def remove_author!(zine)
+  def unbecome_author!(zine)
     authorships.find_by(zine_id: zine.id).destroy
   end
 

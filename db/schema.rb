@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322155610) do
+ActiveRecord::Schema.define(version: 20150410211237) do
 
   create_table "authorships", force: true do |t|
     t.integer  "user_id"
@@ -24,6 +24,21 @@ ActiveRecord::Schema.define(version: 20150322155610) do
   add_index "authorships", ["user_id", "zine_id"], name: "index_authorships_on_user_id_and_zine_id", unique: true
   add_index "authorships", ["user_id"], name: "index_authorships_on_user_id"
   add_index "authorships", ["zine_id"], name: "index_authorships_on_zine_id"
+
+  create_table "images", force: true do |t|
+    t.string   "url"
+    t.integer  "zine_id"
+    t.boolean  "cover",           default: false
+    t.integer  "paragraph_id"
+    t.integer  "height"
+    t.integer  "width",           default: 400
+    t.string   "caption"
+    t.boolean  "display_caption", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["zine_id", "caption", "created_at"], name: "index_images_on_zine_id_and_caption_and_created_at"
 
   create_table "paragraphs", force: true do |t|
     t.string   "header"
@@ -45,7 +60,11 @@ ActiveRecord::Schema.define(version: 20150322155610) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",                        default: false
+    t.string   "profile_picture_file_name"
+    t.string   "profile_picture_content_type"
+    t.integer  "profile_picture_file_size"
+    t.datetime "profile_picture_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
