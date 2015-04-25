@@ -6,10 +6,22 @@
         <li><%= current_user.try(:name) %></li>
         <li> * </li>
         <li><% if current_user.try(:admin?) %>Admin, ID:<%= current_user.id %><% end %></li>
-        <li><%= link_to "Help",    help_path %></li>
-        <li><%= link_to "About",    about_path %></li>
         <% if signed_in? %>
-          <li><%= link_to "Users", users_path %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Zines <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+              <li><%= link_to "All", zines_path %><li>
+              <li><%= link_to "My", current_user %><li>
+              <li class="new-zine-menu">New!</li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Zines", zines_path %><li>
+        <% end %>
+          <li><%= link_to "Members", users_path %></li>
+        <% if signed_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
@@ -30,4 +42,7 @@
       </ul>
     </nav>
   </div>
+
 </header>
+
+<%= render 'zines/new' %>

@@ -1,0 +1,12 @@
+<div class="new-zine-form invisible box background ">
+
+  <small class="close-box"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
+
+  <%= form_for(Zine.new) do |f| %>
+    <div class="close-box-field">
+      <%= f.text_field :title, :placeholder => "&nbsp;Zine title here!".html_safe %>
+    </div>
+    <%= f.submit "Create Zine!", class: "btn btn-large btn-success form-button" %>
+  <% end %>
+
+</div>

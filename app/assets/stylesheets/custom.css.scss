@@ -5,6 +5,8 @@
 
 $gray-medium-light: #eaeaea;
 
+$header-background: pink;
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -19,6 +21,20 @@ body {
   background-image: url("oatpattern3.jpg");
   background-repeat: repeat;
   background-size: 200px 200px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: black;
+    }
+}
+
+.container {
+  width: auto;
+  padding: 0 3%;
 }
 
 section {
@@ -196,13 +212,15 @@ input {
 
 /* Users index */
 
-.users {
+.index-list {
   list-style: none;
   margin: 0;
   li {
     overflow: auto;
     padding: 10px;
     border-bottom: 1px solid $gray-lighter;
+    background-color:rgba(238,238,238,0.85);
+    margin-bottom: 4px;
   }
 }
 
@@ -216,10 +234,15 @@ input {
   background-color:rgba(238,238,238,0.85);
 }
 
+.dropdown-menu {
+  background-color: red;
+}
+
 header {
-  background-color: pink;
+  background-color: $header-background;
 
   ul {
+    background-color: red;
     li {
     color: black;
     background-color: red;
@@ -236,56 +259,198 @@ header {
   }
 }
 
-.users {
-  li {
-    background-color:rgba(238,238,238,0.85);
-    margin-bottom: 4px;
-  }
+.invisible {
+  display: none;
 }
 
 .background {
   background-color:rgba(238,238,238,0.85);
   padding: 20px;
-  margin: 10px;
+}
+
+
+
+.zine-buttons {
+
+  .btn {
+  }
+}
+
+.toggle-boolean {
+  min-width: 96px;
+
 }
 
 .zine-title-container {
   position: relative;
-  z-index: -1000;
-  text-align: center;
+  margin: 1em;
 
 }
 
-.zine-title {
-  background-color:rgba(238,238,238,0.85);
-  padding: 10px;
-  display: inline-block;
-
+.zine-title-block {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    margin: 1em 0;
 }
 
 .zine-cover-image {
+  display: inline-block;
+}
+
+.zine-title {
+  padding: 5px;
+  background-color:rgba(238,238,238,0.85);
+  display: inline-block;
+  position: absolute;
+  white-space: normal;
+  margin: 0;
+}
+
+#buttons {
+  margin: 0 0 20px;
+}
+
+.form {
+  
+  
+}
+
+
+.close-box {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -500;
+  right: 0;
+  margin: 10px;
+
+
+}
+.new-zine-form {
+  width: 40%;
+  font-size: 26px;
+  margin: 0 30% 2em 30% ;
+  padding: 1em 2%;
+  border: 1px solid $gray;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.form-button {
+  width: auto;
+}
+
+.close-box-field {
+  margin: 0 10%;
+}
+
+.new-paragraph-form {
+  width: 40%;
+  font-size: 26px;
+  margin: 0 30% 2em 30% ;
+  padding: 1em 2%;
+  border: 1px solid $gray;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
+    div.form-pad {
+      padding: 20px;;
+    }
+}
+
+.edit-title-form {
+  background-color:rgba(238,238,238,0.85);
+  display: inline-block;
+  position: absolute;
+  white-space: normal;
+  margin: 0;
+  font-size: 26px;
+  padding: 1em 2%;
+  border: 1px solid $gray;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+    div.form-pad {
+      padding: 20px;;
+    }
+  text-align: center;
+  min-width: 300px;
+  z-index: 1000;
+}
+
+.remove-cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 25px;
+}
+
+.font-size-form {
+  font-size: 18px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+
+
+
+}
+
+.authors {
+  border: 10px solid orange;
+  background-color:rgba(180,180,180,0.9);
+  padding: 10px;
+}
+
+.authors-list {
+    li {
+      display: inline-block;
+      list-style-type: none;
+    }
+  }
+
+.author {
+  border: 3px solid $gray;
+  text-decoration: none;
+  color: $gray;
+  padding: 2px;
+  margin: 3px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  &:hover {
+    background-color: #DDDDDD;
+    color: $gray;
+    text-decoration: none;
+  }
+}
+
+.big-comma {
+  font-size: 150%;
+  font-weight: bold;
+
 }
 
 .image-background {
   background-color:rgba(180,180,180,0.7);
   padding: 5px;
   margin: 10px;
+  z-index: 50;
 }
 
 .zine-image-li {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
+  margin: 10px;
 
 }
 
 .zine-image {
+  height: auto;
+  width: auto;
 }
 
 .infoblah {
@@ -300,12 +465,28 @@ ol {
   padding: 0;
 }
 
+ul {
+  padding: 0;
+}
+
 .zines {
   list-style-type: none;
   list-style-image: none;
   list-style-position: outside;
-
   text-align: center;
+  overflow: scroll;
+  li {
+  text-align: center;
+  -webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+  }
 }
 
 .images {
@@ -321,6 +502,8 @@ ol {
 
 .paragraph {
     text-align: left;
+    position: relative;
+    margin: 20px;
 
 
 }
@@ -329,6 +512,7 @@ ol {
   background-color: #EEEEEE;
   padding: 10px;
   text-align: left;
+  white-space: normal;
 
 }
 

@@ -1,0 +1,22 @@
+<div class="zine-title-container" >
+  
+  <div class="<% if @cover %>background<% end %> zine-title-block" >
+
+  <% if @cover %>
+    <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove Cover!'.html_safe, @cover, method: :delete, :class => "btn btn-sm btn-warning remove-cover" %>
+    <% end %>
+
+  <% if @cover %>
+    <img src="<%= @cover.url %>" class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
+  <% end %>
+  <br>
+  </div>
+
+  <% if @zine.show_title %>
+    <h1 class="zine-title">
+      <%= @zine.title %>
+    </h1>
+  <% end %>
+
+  <%= render partial: 'zines/edit_title' %>
+</div>

@@ -1,10 +1,10 @@
-<% if @user.errors.any? %>
+<% if @user || @zine || @paragraph.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger center">
       Try again!
     </div>
     <ul>
-    <% @user.errors.full_messages.each do |msg| %>
+    <% @user || @zine || @paragraph.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>

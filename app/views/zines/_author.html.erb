@@ -1,0 +1,5 @@
+  <li>
+    <%= link_to author, :class => "author" do %>
+      <%= author.name %>
+    <% end %>
+  </li><% unless @authors.length - 1 == author_counter %><span class="big-comma">, </span><% end %>

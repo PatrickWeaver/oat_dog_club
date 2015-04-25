@@ -1,44 +1,28 @@
 <% provide(:title, @zine.title) %>
 
-
-<% if @zine.images.where(cover: true).any? %>
-  <div class="background zine-title-container" style="width:<%= @zine.images.where(cover: true).first.width %>px; height:<%= @zine.images.where(cover: true).first.height %>px;">
-    <img src="<%= @zine.images.where(cover: true).first.url %>" class="zine-cover-image">
-<% else %>
-  <div class="background zine-title-container">
+<% if @editor %>
+    <%= render partial: 'zines/edit_area' %>
 <% end %>
-  <h1 class="zine-title">
-    <%= @zine.title %>
-  </h1>
-</div>
 
-<br>
-
-<span class="background"><%= @user %> -- <% if @zine.published? %>Published<% else %>Unpublished<% end %></span>
-<br><br>
+<%= render partial: 'zines/title' %>
 
 
-<div class="">
+<%= render partial: 'zines/authors' %>
+
   <% if @zine.paragraphs.any? %>
     <%= will_paginate @paragraphs %>
-
     <ol class="zines">
     <%= will_paginate @paragraphs %>
       <%= render partial: 'paragraphs/paragraph', collection: @paragraphs %>
+    </div>
     </ol>
     <%= will_paginate @paragraphs %>
-
   <% end %>
 
   <% if @zine.images.any? %>
-
     <%= will_paginate @images %>
-
     <ol class="images">
       <%= render partial: 'shared/image', collection: @images %>
     </ol>
     <%= will_paginate @images %>
-
   <% end %>
-
-</div>

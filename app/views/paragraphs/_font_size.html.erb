@@ -1,0 +1,8 @@
+<% if paragraph.font_size > 6 %>
+  <%= link_to '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'.html_safe, {:controller => "paragraphs", :action => "font_size", :id => paragraph.id, :size => -2}, {:class => "btn btn-sm btn-primary"} %>
+<% end %>
+
+<% if paragraph.font_size < 100 %>
+  <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'.html_safe, {:controller => "paragraphs", :action => "font_size", :id => paragraph.id, :size => 2}, {:class => "btn btn-sm btn-info"} %>
+<% end %>
+

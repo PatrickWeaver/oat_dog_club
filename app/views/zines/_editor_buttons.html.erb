@@ -1,0 +1,27 @@
+<div id="buttons">
+  <% if @zine.published %>
+    <%= link_to '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;Unpublish!'.html_safe, {controller: "zines", action: "publish"}, :class => "toggle-boolean btn btn-danger" %>
+  <% else %>
+    <%= link_to '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;Publish!'.html_safe, {controller: "zines", action: "publish"}, :class => "toggle-boolean btn btn-success" %>
+  <% end %>
+
+    <button type="button" class="toggle-publish btn btn-success new-paragraph-button">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;&nbsp;Add Paragraph
+    </button>
+
+    <button type="button" class="toggle-publish btn ">
+      <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>&nbsp;&nbsp;Add Image
+    </button>
+
+    <button type="button" class="toggle-publish btn edit-title-button btn-warning">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp;&nbsp;Edit Title
+    </button>
+
+    <button type="button" class="toggle-publish btn">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;Add Author
+    </button>
+
+    <button type="button" class="toggle-publish btn">
+      <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>&nbsp;&nbsp;Leave Zine
+    </button>
+</div>

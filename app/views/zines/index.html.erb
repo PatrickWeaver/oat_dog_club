@@ -1,0 +1,11 @@
+<% provide(:title, 'Zines') %>
+<h1 class="background">All zines</h1>
+
+
+<%= will_paginate %>
+
+<ul class="index-list">
+  <%= render @zines %>
+</ul>
+
+<%= will_paginate %>

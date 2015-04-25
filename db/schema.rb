@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418211030) do
+ActiveRecord::Schema.define(version: 20150425031950) do
 
   create_table "authorships", force: true do |t|
     t.integer  "user_id"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20150418211030) do
     t.string   "header"
     t.text     "content"
     t.string   "border_color", default: "000000"
-    t.integer  "font_size",    default: 16
+    t.integer  "font_size",    default: 20
     t.integer  "position"
     t.integer  "zine_id"
     t.datetime "created_at"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150418211030) do
     t.boolean  "published",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "show_title", default: true
   end
 
   add_index "zines", ["title", "created_at", "updated_at"], name: "index_zines_on_title_and_created_at_and_updated_at"

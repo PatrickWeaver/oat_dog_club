@@ -1,18 +1,25 @@
-<li id="paragraph-<%= paragraph.id  %>" class="background paragraph" style="border: 10px solid #<%= paragraph.border_color %>">
+<li id="paragraph-<%= paragraph.id  %>" class="background paragraph" style="border: 10px solid <%= paragraph.border_color %>; font-size: <%= paragraph.font_size %>px;">
 
-  <h2 class="p-header">
+<% if @editor %>
+    <div class="font-size-form">
+      <%= render partial: 'paragraphs/font_size', :locals => {paragraph: paragraph } %>
+    </div>
+<% end %>
+
+  <h2 class="p-header" style="font-size: 200%;">
     <%= paragraph.header %>
   </h2>
 
-  <span class="content">
+  <span class="content" style="">
     <%= paragraph.content %>
   </span>
 
   <br>
 
   <span class="content">
-    <%= paragraph.id %>
+    ID: <%= paragraph.id %>  |  BC: <% if paragraph.border_color %><%= paragraph.border_color %><% else %> none<% end %>
   </span>
+
 
   <ul class="zines">
   <%= render partial: 'shared/image', collection: Image.where(paragraph: paragraph ) %>

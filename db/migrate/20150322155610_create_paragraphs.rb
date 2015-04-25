@@ -4,7 +4,7 @@ class CreateParagraphs < ActiveRecord::Migration
       t.string :header
       t.text :content
       t.string :border_color, default: "000000"
-      t.integer :font_size, default: "16"
+      t.integer :font_size, default: "20"
       t.integer :position
       t.integer :zine_id
 

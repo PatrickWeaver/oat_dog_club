@@ -1,0 +1,7 @@
+<div class="authors paragraph">
+  <% if @authors %>
+    <ul class="authors-list">
+    <%= render partial: 'zines/author', collection: @authors %>
+    </ul>
+  <% end %>
+</div>

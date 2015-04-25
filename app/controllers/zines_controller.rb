@@ -1,49 +1,115 @@
 class ZinesController < ApplicationController
-  before_action :signed_in_user,  only: :destroy
+  before_action :signed_in_user,  only: [:destroy, :publish, :create, :update]
 
+  def create
+    @user = current_user
+    @zine = @user.zines.create(zine_params)
+    if @zine.save
+      flash[:success] = "New zine created! Now write something!"
+      redirect_to zine_path(@zine)
+    else
+      render 'static_pages/home'
+    end
+
+  end
+
+  def index
+    @zines = Zine.paginate(page: params[:page])
+  end
 
   def show
     @zine = Zine.find(params[:id])
     @user = current_user
 
-    def zine_viewable?
-      if @zine.published == true
-        true
-      elsif @user
-        if @user.authoring?(@zine)
-          true
-        elsif @user.admin?
-          true
-        end
-      else
-        false
+
+    if zine_viewable?(@user)
+      @paragraph = Paragraph.new
+      @authors = @zine.users.to_a
+      if @zine.images.where(cover: true).any?
+        @cover = @zine.images.where(cover: true).first
       end
-    end
-
-
-    if zine_viewable?
-        @paragraphs = @zine.paragraphs.paginate(page: params[:page])
-        @images = @zine.images.where(:paragraph_id => nil).paginate(page: params[:page])
-        def get_images_for_paragraph(paragraph)
+      @paragraphs = @zine.paragraphs.paginate(page: params[:page])
+      @images = @zine.images.where(:paragraph_id => nil).paginate(page: params[:page])
+      def get_images_for_paragraph(paragraph)
           paragraph_images = Image.where(paragraph_id: paragraph.id).to_a
+      end
+      @editor =
+        if user_editor?(@user)
+          true
+        else
+          false
         end
+      @font_size = @paragraph.font_size
+
+
       
     else
       redirect_to root_url
     end
   end
 
+    def update
+    @zine = Zine.find(params[:id])
+    if @zine.update_attributes(zine_params)
+      redirect_to @zine
+    else
+      flash[:danger] = "Invalid edit!"
+      redirect_to @zine
+    end
+  end
+
   def publish
+    session[:return_to] ||= request.referer
     @zine = Zine.find(params[:id])
     @zine.toggle!(:published)
     @zine.save
-    redirect_to user_path(current_user)
+    redirect_to session.delete(:return_to)
+  end
+
+  def title
+    session[:return_to] ||= request.referer
+    @zine = Zine.find(params[:id])
+    @zine.toggle!(:show_title)
+    @zine.save
+    redirect_to session.delete(:return_to)
+  end
+
+  def font_size_up
+    if paragraph_id
+      redirect_to paragraph_path(paragraph_id)
+    else
+      session[:return_to] ||= request.referer
+      @paragraph = Paragraph.find(params[:id])
+      if @paragraph.font_size < 30
+        @paragraph.font_size += 2
+      else
+        if @paragraph.font_size < 100
+          @paragraph.font_size += 5
+        end
+      end
+      redirect_to session.delete(:return_to)
+    end
+  end
+
+  def font_size_down
+    session[:return_to] ||= request.referer
+    @paragraph = Paragraph.find(params[:id])
+    if @paragraph.font_size > 30
+      @paragraph.font_size -= 5
+    else
+      if @paragraph.font_size > 4
+        @paragraph.font_size += 2
+      end
+    end
+    redirect_to session.delete(:return_to)
   end
 
   def destroy
-    Zine.find(params[:id]).destroy
-    flash[:success] = "Zine has been deleted."
-    redirect_to user_path(current_user)
+    session[:return_to] ||= request.referer
+    @zine = Zine.find(params[:id])
+    @zine.destroy
+    flash[:success] = "#{@zine.title} has been deleted."
+    redirect_to session.delete(:return_to)
   end
 
 
@@ -61,7 +127,28 @@ class ZinesController < ApplicationController
   private
 
     def zine_params
-      params.require(:zine).permit(:title, :published)
+      params.require(:zine).permit(:title, :published, :user)
     end
 
+
+    def user_editor?(user)
+      if @user
+        if @user.authoring?(@zine)
+          true
+        elsif @user.admin?
+          true
+        end
+      else
+        false
+      end
+    end
+
+
+    def zine_viewable?(user)
+      if @zine.published == true
+        true
+      elsif @user
+        user_editor?(@user)
+      end
+    end
 end

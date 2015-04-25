@@ -1,13 +1,27 @@
 <% if !image.cover %>
-  <li id="image-<%= image.id  %>" class="zine-image-li" style="border: 10px solid #<%= image.border_color %>;  width: <%= image.width + 20 %>px;">
+  <li id="image-<%= image.id  %>" class="zine-image-li" style="
+    border: 
+      <% if image.width > 100 %>
+        10px 
+      <% else %>
+        1px 
+      <% end %>
+      solid <%= image.border_color %>;
+    max-width: 
+      <% if image.width > 100 %>
+        <%= image.width + 20 %>px;
+      <% else %>
+        <%= image.width + 2 %>px; font-size: 10px;
+      <% end %>
+      ">
 
     <% if image.url != '' %>
-      <img src="<%= image.url %>" class="zine-image" style="height: <%= image.height %>px; width: <%= image.width %>px;">
+      <img src="<%= image.url %>" class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
     <% end %>
 
     <br>
 
-    <div class="infoblah">
+    <div class="infoblah" >
       id: <%= image.id %><br>
       url: <%= image.url %><br>
       image cover: <%= image.cover %><br>

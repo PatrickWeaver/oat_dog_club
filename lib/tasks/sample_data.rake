@@ -59,7 +59,7 @@ def make_paragraphs
     if n >= color_lib.length
       m = n-color_lib.length
     end
-    border_color = color_lib[m]
+    border_color = "##{color_lib[m]}"
 
     per = (n+1)/5.0
     zine_id = per.ceil
@@ -112,7 +112,7 @@ def make_images
       false
     end
 
-    border_color = color_lib2[n]
+    border_color = "##{color_lib2[n]}"
 
 
 

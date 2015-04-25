@@ -1,0 +1,3 @@
+<li>
+User: <%= authorship.user_id %><% if authorship.user_id == current_user.id %>**<% end %> | Zine: <%=authorship.zine_id %> | Position: <%=authorship.position %> | <%=authorship.updated_at %>
+</li>
