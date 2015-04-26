@@ -5,7 +5,7 @@ OatDogClub::Application.routes.draw do
   resources :users
   resources :zines
   resources :images
-  resources :paragraphs
+  resources :paragraphs, only: [:create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :authorships
 
@@ -15,9 +15,13 @@ OatDogClub::Application.routes.draw do
   match '/signup',                        to: 'users#new',            via: 'get'
   match '/signin',                        to: 'sessions#new',         via: 'get'
   match '/signout',                       to: 'sessions#destroy',     via: 'delete'
-  match '/zines/:id/publish-unpublish',   to: 'zines#publish', via: 'get'
+  match '/zines/:id/publish-unpublish',   to: 'zines#publish',        via: 'get'
   match '/paragraphs/:id/font-size',      to: 'paragraphs#font_size', via: 'get'
-  match '/zines/:id/title',               to: 'zines#title', via: 'get'
+  match '/paragraphs/:id/delete',      to: 'paragraphs#destroy', via: 'get'
+  match '/zines/:id/title',               to: 'zines#title',          via: 'get'
+  match '/zines/:id/authors',             to: 'zines#authors',        via: 'get'
+  match '/zines/:id/:author/remove',      to: 'zines#remove_author',  via: 'get'
+  match '/zines/:id/',                    to: 'zines#add_author',     via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

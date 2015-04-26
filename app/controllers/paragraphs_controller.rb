@@ -25,6 +25,14 @@ class ParagraphsController < ApplicationController
 
   end
 
+  def destroy
+    session[:return_to] ||= request.referer
+    paragraph = Paragraph.find(params[:id])
+    paragraph.destroy
+    flash[:success] = "#{paragraph.header} has been deleted."
+    redirect_to session.delete(:return_to)
+  end
+
 def font_size
   @paragraph = Paragraph.find(params[:id])
   size_change = params[:size].to_i

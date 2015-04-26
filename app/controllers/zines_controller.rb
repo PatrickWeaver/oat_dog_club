@@ -48,7 +48,7 @@ class ZinesController < ApplicationController
     end
   end
 
-    def update
+  def update
     @zine = Zine.find(params[:id])
     if @zine.update_attributes(zine_params)
       redirect_to @zine
@@ -67,11 +67,47 @@ class ZinesController < ApplicationController
   end
 
   def title
-    session[:return_to] ||= request.referer
-    @zine = Zine.find(params[:id])
-    @zine.toggle!(:show_title)
-    @zine.save
-    redirect_to session.delete(:return_to)
+    zine = Zine.find(params[:id])
+    zine.toggle!(:show_title)
+    zine.save
+    redirect_to zine
+  end
+
+  def authors
+    zine = Zine.find(params[:id])
+    zine.toggle!(:show_authors)
+    zine.save
+    redirect_to zine
+  end
+
+  def remove_author
+    author = User.find(params[:author])
+    zine = Zine.find(params[:id])
+    if author
+      if zine.users.to_a.length > 1
+        zine.remove_author!(author)
+      else
+        flash[:warning] = "You can't remove the last author!"
+      end
+    else
+      flash[:danger] = "No user with email #{params[:author]}!"
+    end
+    redirect_to zine
+  end
+
+  def add_author
+    author = User.where(email: (params[:email])).first
+    zine = Zine.find(params[:id])
+    if author
+      unless zine.written_by?(author)
+        zine.add_author!(author)
+      else
+        flash[:warning] = "#{params[:email]} is already an author of this zine!"
+      end
+    else
+      flash[:danger] = "No user with email #{params[:email]}!"
+    end
+    redirect_to zine
   end
 
   def font_size_up

@@ -10,10 +10,22 @@ $(document).ready(function(){
 
   $( ".close-box" ).click(function() {
     $( this ).parent(".box").toggleClass( "invisible" );
+    $( this ).parents(".twin-boxes").children(".twin-box").toggleClass ( "invisible" );
+  });
+
+  $( ".author-section" ).find( ".close-box" ).click(function() {
+    $( ".author-section" ).find(".show-author").toggleClass( "invisible" );
+    $( ".author-section" ).find(".remove-author").toggleClass( "invisible" );
+  });
+
+  $( ".title-unhide" ).click(function() {
+    $( ".zine-title-container" ).toggleClass( "invisible" );
   });
 
   var containerWidth = $('.zine-title-container').width();
   var blockWidth = $('.zine-title-block').outerWidth();
+  var blockHeight = $('.zine-title-block').outerHeight();
+
 
   $( ".zine-title-block" ).css({ 
         'left' : (containerWidth - blockWidth) / 2
@@ -33,9 +45,11 @@ $(document).ready(function(){
     newEditWidth = editWidth
   }
 
-  if (blockWidth < 300) {
+  if (blockWidth < 300 ) {
     newEditWidth = 300
+    if (blockHeight < 300){
     extraTopMargin = 100
+   }
   }
 
 
@@ -55,6 +69,34 @@ $(document).ready(function(){
     $( ".edit-title-form" ).toggleClass( "invisible" );
     $( ".zine-title" ).toggleClass( "invisible" );
   });
+
+
+  $( ".authors-button" ).click(function() {
+    $( ".zine-title-container" ).toggleClass( "invisible" );
+    $( ".authors" ).toggleClass( "invisible" );
+
+  });
+
+  $( ".remove-author-button" ).click(function() {
+    $( this ).toggleClass( "btn-danger").toggleClass( "btn-warning" );
+    $( ".edit-authors" ).toggleClass( "dark-changes");
+    $( ".add-author-button").toggleClass( "invisible");
+    $( ".dont-add-author-button").toggleClass( "invisible");
+    $( ".show-authors-button").toggleClass( "btn-success" ).toggleClass( "btn-gray" );
+    $( ".hide-authors-button").toggleClass( "btn-danger" ).toggleClass( "btn-gray" );
+    $( ".show-author" ).toggleClass( "invisible" );
+    $( ".remove-author" ).toggleClass( "invisible" );
+  })
+
+  $( ".add-author-button" ).click(function() {
+    $( ".authors-list" ).toggleClass( "invisible" );
+    $( ".add-author" ).toggleClass( "invisible" );
+    $( ".show-authors-button").toggleClass( "btn-success" ).toggleClass( "btn-gray" );
+    $( ".hide-authors-button").toggleClass( "btn-danger" ).toggleClass( "btn-gray" );
+    $( ".remove-author-button").toggleClass( "invisible");
+    $( ".dont-remove-author-button").toggleClass( "invisible");
+    $( ".add-author-button").toggleClass( "btn-success" ).toggleClass( "btn-gray" );
+  })
 
 
 

@@ -1,7 +1,48 @@
-<div class="authors paragraph">
-  <% if @authors %>
-    <ul class="authors-list">
-    <%= render partial: 'zines/author', collection: @authors %>
-    </ul>
-  <% end %>
-</div>
+<% if @zine.show_authors or @editor %>
+  <div class="twin-boxes author-section">
+    <% if @zine.show_authors %>
+    <div class="authors twin-box">
+      <p class="balance-header">Authors:</p>
+      <% if @authors %>
+        <ul class="authors-list">
+        <%= render partial: 'zines/author', collection: @authors %>
+        </ul>
+      <% end %>
+    </div>
+    <% end %>
+    
+    <div class="authors edit-authors invisible box">
+      <small class="close-box title-unhide"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
+      <p class="balance-header">Edit Authors:</p>
+      <% if @authors %>
+        <ul class="authors-list">
+        <%= render partial: 'zines/author', collection: @authors %>
+        </ul>
+      <% end %>
+      <div class="add-author invisible">
+        <%= form_tag do %>
+          <div class="field close-box-field input-group">
+            <%= text_field_tag 'email', 'oatdog@oatdog.club', class: 'form-control' %>
+          
+          <span class="input-group-btn"><button type"button" class="btn btn-success toggle-boolean form-button">
+              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>&nbsp;&nbsp;Add!
+          </button></span>
+          </div>
+        <% end %>
+      </div>
+
+      <button class="btn btn-sm btn-success add-author-button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;&nbsp;Add!</button>
+      <button class="btn btn-sm btn-gray dont-add-author-button invisible"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;&nbsp;Add!</button>
+      <button class="btn btn-sm btn-danger remove-author-button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove!</button>
+      <button class="btn btn-sm btn-gray dont-remove-author-button invisible"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove!</button>
+      <% if @zine.show_authors %>
+      <%= link_to '<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>&nbsp;&nbsp;Hide!'.html_safe, {controller: "zines", action: "authors"}, :class => "toggle-boolean btn btn-sm btn-danger hide-authors-button" %>
+    <% else %>
+      <%= link_to '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;&nbsp;Show!'.html_safe, {controller: "zines", action: "authors"}, :class => "toggle-boolean btn btn-sm btn-success show-authors-button" %>
+    <% end %>
+    </div>
+
+  </div>
+
+
+<% end %>

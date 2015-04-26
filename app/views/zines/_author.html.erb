@@ -1,5 +1,10 @@
-  <li>
-    <%= link_to author, :class => "author" do %>
+
+
+
+  <li class="twin-boxes">
+    <%= link_to author, :class => "author show-author box" do %>
       <%= author.name %>
     <% end %>
+    <%= link_to author.name, {:controller => "zines", :action => "remove_author", :author => author.id }, {:class => "author remove-author invisible twin-box",  data: (@user == author ? { confirm: "Remove Yourself?" } : nil ) } %>
+
   </li><% unless @authors.length - 1 == author_counter %><span class="big-comma">, </span><% end %>
