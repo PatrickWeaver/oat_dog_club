@@ -219,6 +219,11 @@ input {
 }
 
 
+
+
+
+
+
 /* Users index */
 
 .index-list {
@@ -360,6 +365,21 @@ header {
 }
 
 .new-paragraph-form {
+  width: 40%;
+  font-size: 26px;
+  margin: 0 30% 2em 30% ;
+  padding: 1em 2%;
+  border: 1px solid $gray;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
+    div.form-pad {
+      padding: 20px;;
+    }
+}
+
+.new-image-form {
   width: 40%;
   font-size: 26px;
   margin: 0 30% 2em 30% ;

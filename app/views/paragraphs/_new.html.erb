@@ -1,21 +1,26 @@
+<div class="form invisible background new-paragraph-form form-button box">
 
-<h2>New Paragraph!</h2>
+  <small class="close-box"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
 
-<div class="row">
-  <div class="form-pad">
-    <%= form_for(@paragraph, multipart:true) do |f| %>
-      <%= render 'shared/error_messages' %>
 
-      <%= f.text_field :header, class: 'form-control', :placeholder => "&nbsp;Header".html_safe %>
+  <h2>New Paragraph!</h2>
 
-      <%= f.text_area :content, class: 'form-control',  :placeholder => "&nbsp;Text".html_safe %>
+  <div class="row">
+    <div class="form-pad">
+      <%= form_for(@paragraph, multipart:true) do |f| %>
+        <%= render 'shared/error_messages' %>
 
-      <%= f.color_field :border_color, class: 'form-control' %>
+        <%= f.text_field :header, class: 'form-control', :placeholder => "&nbsp;Header".html_safe %>
 
-      <%= f.hidden_field :id, value: @zine.id %>
+        <%= f.text_area :content, class: 'form-control',  :placeholder => "&nbsp;Text".html_safe %>
 
-      <%= f.submit "Create Paragraph!", class: "btn btn-primary" %>
-    <% end %>
-    
+        <%= f.color_field :border_color, class: 'form-control' %>
+
+        <%= f.hidden_field :id, value: @zine.id %>
+
+        <%= f.submit "Create Paragraph!", class: "btn btn-primary" %>
+      <% end %>
+      
+    </div>
   </div>
 </div>

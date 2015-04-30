@@ -7,7 +7,7 @@
     <% end %>
 
   <% if @cover %>
-    <img src="<%= @cover.url %>" class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
+    <img src="<%= @cover.image_file.url %>" class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
   <% end %>
   <br>
   </div>

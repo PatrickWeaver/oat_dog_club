@@ -77,7 +77,8 @@ end
 def make_images
   color_lib2 = ['00F48F', '8AE3A2', 'B6C43C', 'BD360B', '2F0122', 'A6B42F', '7E8E99', 'F84100', 'F5E700', 'D2D8D8']
   10.times do |n|
-    url = "/assets/#{n+1}.png"
+    url = "app/assets/images/#{n+1}.png"
+    
 
     per = (n+1)/5.0
     zine_id = per.ceil
@@ -95,10 +96,8 @@ def make_images
     end
 
     if n_rem == 0
-      height = (n + 1) * 100
       width = (n + 1) * 150
     else
-      height = 150 * (n_rem)
       width = 200 * (n_rem)
     end
 
@@ -116,11 +115,10 @@ def make_images
 
 
 
-    Image.create!(  url: url,
+    Image.create!(  image_file: File.new(url),
                     zine_id: zine_id,
                     cover: cover,
                     paragraph_id: paragraph_id,
-                    height: height,
                     width: width,
                     caption: caption,
                     display_caption: display_caption,

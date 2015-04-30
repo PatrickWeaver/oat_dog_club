@@ -15,18 +15,17 @@
       <% end %>
       ">
 
-    <% if image.url != '' %>
-      <img src="<%= image.url %>" class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
+    <% if image.image_file.url != '' %>
+      <img src="<%= image.image_file.url %>" class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
     <% end %>
 
     <br>
 
     <div class="infoblah" >
       id: <%= image.id %><br>
-      url: <%= image.url %><br>
+      url: <%= image.image_file.url %><br>
       image cover: <%= image.cover %><br>
       p ID: <%= image.paragraph_id %><br>
-      height: <%= image.height %><br>
       width: <%= image.width %><br>
       display caption?
         <% if image.display_caption %>

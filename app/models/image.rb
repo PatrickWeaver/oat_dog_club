@@ -3,7 +3,10 @@ class Image < ActiveRecord::Base
   belongs_to :paragraph
   validates :zine_id, presence: true
 
-  validates :height, numericality: { only_integer: true, greater_than: 4, less_than: 2001, allow_nil: true }
+  has_attached_file :image_file, :default_url => "/assets/oatpattern2.jpg"
+  validates_with AttachmentContentTypeValidator, :attributes => :image_file, :content_type => /\Aimage\/.*\Z/
+  validates_with AttachmentSizeValidator, :attributes => :image_file, :less_than => 5.megabytes
+
   validates :width, numericality: {
     only_integer: true,
     greater_than: 4,

@@ -24,6 +24,7 @@ class ZinesController < ApplicationController
 
     if zine_viewable?(@user)
       @paragraph = Paragraph.new
+      @image = Image.new
       @authors = @zine.users.to_a
       if @zine.images.where(cover: true).any?
         @cover = @zine.images.where(cover: true).first

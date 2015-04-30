@@ -8,6 +8,10 @@ $(document).ready(function(){
     $( ".new-paragraph-form" ).toggleClass( "invisible" );
   });
 
+  $( ".new-image-button" ).click(function() {
+    $( ".new-image-form" ).toggleClass( "invisible" );
+  });
+
   $( ".close-box" ).click(function() {
     $( this ).parent(".box").toggleClass( "invisible" );
     $( this ).parents(".twin-boxes").children(".twin-box").toggleClass ( "invisible" );

@@ -1,0 +1,43 @@
+<div class="form background new-image-form form-button box invisible">
+
+  <small class="close-box"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
+
+
+  <h2>New Image!</h2>
+
+  <div class="row">
+    <div class="form-pad">
+      <%= form_for(@image, multipart:true) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        <div class="field">
+          <%= f.file_field :image_file %>
+        </div>
+
+        <%= f.text_area :caption, class: 'form-control',  :placeholder => "&nbsp;Caption".html_safe %>
+
+        <%= f.label "Display Caption?" %>
+        <span style="float: right;">
+        <%= f.check_box :display_caption, options = {checked: true, class: 'form-control', :data => { 'on-color' => 'success', 'off-color' => 'danger', 'on-text' => 'Yes', 'off-text' => 'No' } } %>
+        </span>
+        <br><br>
+
+        <%= f.text_field :width, class: 'form-control' %>
+
+
+        <%= f.color_field :border_color, class: 'form-control' %>
+
+        <%= f.label "Cover?" %>
+        <span style="float: right;">
+        <%= f.check_box :cover, options = {checked: false, class: 'form-control', :data => { 'on-color' => 'success', 'off-color' => 'danger', 'on-text' => 'Yes', 'off-text' => 'No' }  } %>
+        </span>
+        <br><br>
+
+        <%= f.hidden_field :id, value: @zine.id %>
+
+        <%= f.submit "Create Image!", class: "btn btn-primary" %>
+      <% end %>
+      
+    </div>
+  </div>
+</div>
