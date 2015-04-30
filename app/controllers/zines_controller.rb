@@ -151,9 +151,10 @@ class ZinesController < ApplicationController
 
 
 
-  def is_author?
+  def is_author?(user)
     @zine = current_user.zines.find_by(id: params[:id])
     unless @zine.nil?
+
     end
   end
 

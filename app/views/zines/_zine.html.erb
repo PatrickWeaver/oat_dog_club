@@ -1,8 +1,7 @@
-
-<% if current_user.try(:admin?) || current_user == @user || zine.published %>
-    <li>
-    <%= link_to zine.title, zine %>
-    <% if current_user.try(:admin?) || current_user == @user %>
+<li>
+  <%= link_to zine.title, zine %>
+  <% if current_user %>
+    <% if current_user.admin? || zine.written_by?(current_user) %>
         |  <%= link_to "delete", zine, method: :delete, data: { confirm: "Delete #{zine.title}?" } %>
         |  <%= link_to :controller => "zines", :action => "publish", :id => zine.id do %>
             <% if zine.published %>
@@ -13,5 +12,5 @@
           <% end %>
           
     <% end %>
-  </li>
-<% end %>
+  <% end %>
+</li>
