@@ -14,7 +14,14 @@
 
         <%= f.text_area :content, class: 'form-control',  :placeholder => "&nbsp;Text".html_safe %>
 
-        <%= f.color_field :border_color, class: 'form-control' %>
+        <%= f.fields_for :zine_content do |z| %>
+
+          <%= z.color_field :border_color, class: 'form-control' %>
+          <%= z.label "Add as:" %>
+          <%= z.select(:order, options_for_select([['Cover', 0], ['First', 1]])) %>
+          <%= z.hidden_field :zine_id, value: @zine.id %>
+
+        <% end %>
 
         <%= f.hidden_field :id, value: @zine.id %>
 

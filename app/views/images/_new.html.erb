@@ -22,18 +22,21 @@
         </span>
         <br><br>
 
+        <%= f.fields_for :zine_content do |z| %>
+
+          <%= z.color_field :border_color, class: 'form-control' %>
+          <%= z.label "Add as:" %>
+          <%= z.select(:order, options_for_select([['Cover', 0], ['First', 1]])) %>
+          <%= z.hidden_field :zine_id, value: @zine.id %>
+
+        <% end %>
+
         <%= f.text_field :width, class: 'form-control' %>
+        <%= f.hidden_field :id, value: @zine.id %>
 
-
-        <%= f.color_field :border_color, class: 'form-control' %>
-
-        <%= f.label "Cover?" %>
-        <span style="float: right;">
-        <%= f.check_box :cover, options = {checked: false, class: 'form-control', :data => { 'on-color' => 'success', 'off-color' => 'danger', 'on-text' => 'Yes', 'off-text' => 'No' }  } %>
-        </span>
         <br><br>
 
-        <%= f.hidden_field :id, value: @zine.id %>
+
 
         <%= f.submit "Create Image!", class: "btn btn-primary" %>
       <% end %>

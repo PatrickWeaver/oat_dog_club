@@ -1,9 +1,9 @@
 class Zine < ActiveRecord::Base
   has_many :authorships, ->{ order 'position' }, dependent: :destroy
   has_many :users, through: :authorships
-
-  has_many :paragraphs, dependent: :destroy
-  has_many :images, dependent: :destroy
+  has_many :zine_contents
+  has_many :paragraphs, :through => :zine_contents, :source => :orderable, :source_type => 'Paragraph', dependent: :destroy
+  has_many :images, :through => :zine_contents, :source => :orderable, :source_type => 'Image', dependent: :destroy
 
   validates :title, presence: true
 

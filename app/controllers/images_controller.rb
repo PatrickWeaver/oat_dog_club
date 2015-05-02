@@ -16,19 +16,20 @@ class ImagesController < ApplicationController
 
   def create
     @zine = Zine.find(params[:image][:id])
-    @image = @zine.images.create(image_params)
-    if @image.save
+    image = Image.create(image_params)
+
+    if image.save
       flash[:success] = "New Image created!"
       redirect_to zine_path(@zine)
     else
-      flash[:sdanger] = "Error!"
+      flash[:danger] = "Image didn't save"
       redirect_to zine_path(@zine)
     end
-  end
+end
 
   private
 
     def image_params
-      params.require(:image).permit(:caption, :cover, :width, :display_caption, :border_color, :image_file)
+      params.require(:image).permit(:caption, :cover, :width, :display_caption, :border_color, :image_file, zine_content_attributes: [ :border_color, :order, :zine_id ])
     end
 end

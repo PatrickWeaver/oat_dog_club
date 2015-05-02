@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428044013) do
+ActiveRecord::Schema.define(version: 20150501183705) do
 
   create_table "authorships", force: true do |t|
     t.integer  "user_id"
@@ -26,35 +26,29 @@ ActiveRecord::Schema.define(version: 20150428044013) do
   add_index "authorships", ["zine_id"], name: "index_authorships_on_zine_id"
 
   create_table "images", force: true do |t|
-    t.integer  "zine_id"
-    t.boolean  "cover",                   default: false
     t.integer  "paragraph_id"
     t.integer  "width",                   default: 400
     t.string   "caption"
     t.boolean  "display_caption",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "border_color",            default: "000000"
     t.string   "image_file_file_name"
     t.string   "image_file_content_type"
     t.integer  "image_file_file_size"
     t.datetime "image_file_updated_at"
   end
 
-  add_index "images", ["zine_id", "caption", "created_at"], name: "index_images_on_zine_id_and_caption_and_created_at"
+  add_index "images", ["caption", "created_at"], name: "index_images_on_zine_id_and_caption_and_created_at"
 
   create_table "paragraphs", force: true do |t|
     t.string   "header"
     t.text     "content"
-    t.string   "border_color", default: "000000"
-    t.integer  "font_size",    default: 20
-    t.integer  "position"
-    t.integer  "zine_id"
+    t.integer  "font_size",  default: 20
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "paragraphs", ["zine_id", "updated_at"], name: "index_paragraphs_on_zine_id_and_updated_at"
+  add_index "paragraphs", ["updated_at"], name: "index_paragraphs_on_zine_id_and_updated_at"
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -72,6 +66,18 @@ ActiveRecord::Schema.define(version: 20150428044013) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "zine_contents", force: true do |t|
+    t.integer  "order"
+    t.integer  "orderable_id"
+    t.string   "orderable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "zine_id"
+    t.string   "border_color",   default: "#000000"
+  end
+
+  add_index "zine_contents", ["zine_id", "updated_at"], name: "index_zine_contents_on_zine_id_and_updated_at"
 
   create_table "zines", force: true do |t|
     t.string   "title"

@@ -1,0 +1,94 @@
+ <%= content_tag_for :li, zine_content do %>
+
+
+  <% if zine_content.orderable_type == "Paragraph" %>
+
+    <div class="background paragraph" style="border: 10px solid <%= zine_content.border_color %>; font-size: <%= zine_content.orderable.font_size %>px;">
+
+    <% if @editor %>
+        <div class="font-size-form">
+          <%= render partial: 'paragraphs/buttons', :locals => {paragraph: zine_content.orderable } %>
+        </div>
+    <% end %>
+
+      <h2 class="p-header" style="font-size: 200%;">
+        <%= zine_content.orderable.header %>
+      </h2>
+
+      <span class="content" style="">
+        <%= zine_content.orderable.content %>
+      </span>
+
+      <br>
+
+      <span class="content">
+        O: <%= zine_content.order %>  |  P_ID: <%= zine_content.orderable.id %> |  ZC_ID: <%= zine_content.id %> |  BC: <% if zine_content.border_color %><%= zine_content.orderable.zine_content.border_color %><% else %> none<% end %><br>
+      </span>
+
+
+      <ul class="zines">
+      <%= render partial: 'shared/image', collection: Image.where(paragraph: zine_content.orderable ) %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if zine_content.orderable_type == "Image" %>
+
+    <% if zine_content.order %>
+    <% if (zine_content.order > 0)  %>
+      <div class="zine-image-li" style="
+        border: 
+          <% if zine_content.orderable.width > 100 %>
+            10px 
+          <% else %>
+            1px 
+          <% end %>
+          solid <%= zine_content.border_color %>;
+        max-width: 
+          <% if zine_content.orderable.width > 100 %>
+            <%= zine_content.orderable.width + 20 %>px;
+          <% else %>
+            <%= zine_content.orderable.width + 2 %>px; font-size: 10px;
+          <% end %>
+          ">
+
+        <% if zine_content.orderable.image_file.url != '' %>
+          <img src="<%= zine_content.orderable.image_file.url %>" class="zine-image" style="height: auto; max-width: <%= zine_content.orderable.width %>px;">
+        <% end %>
+
+        <br>
+
+        <div class="infoblah background" style="color: black !important;" >
+
+          O: <%= zine_content.order %><br>
+          Image_id: <%= zine_content.orderable.id %><br>
+          zc_id: <%= zine_content.id %><br>
+          url: <%= zine_content.orderable.image_file.url %><br>
+          p ID: <%= zine_content.orderable.paragraph_id %><br>
+          width: <%= zine_content.orderable.width %><br>
+          display caption?
+            <% if zine_content.orderable.display_caption %>
+              true
+            <% else %>
+              false
+            <% end %><br>
+          <% if zine_content.orderable.display_caption %>caption: <%= zine_content.orderable.try(:caption) %><br><% end %>
+          border color: <%= zine_content.border_color %>
+        </div>
+
+        <% if zine_content.orderable.display_caption %>
+          <div class="caption">
+            <%= zine_content.orderable.try(:caption) %><br>
+          </div>
+        <% end %>
+
+      </div>
+
+      <br><br>
+    <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+
+

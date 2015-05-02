@@ -24,11 +24,13 @@ class ZinesController < ApplicationController
 
     if zine_viewable?(@user)
       @paragraph = Paragraph.new
+      @paragraph.build_zine_content
       @image = Image.new
+      @image.build_zine_content
+      cover_zc = @zine.zine_contents.where(order: 0, orderable_type: "Image").first
+      @cover = cover_zc.orderable
       @authors = @zine.users.to_a
-      if @zine.images.where(cover: true).any?
-        @cover = @zine.images.where(cover: true).first
-      end
+      @zine_contents = @zine.zine_contents.paginate(page: params[:page])
       @paragraphs = @zine.paragraphs.paginate(page: params[:page])
       @images = @zine.images.where(:paragraph_id => nil).paginate(page: params[:page])
       def get_images_for_paragraph(paragraph)
@@ -41,6 +43,7 @@ class ZinesController < ApplicationController
           false
         end
       @font_size = @paragraph.font_size
+
 
 
       

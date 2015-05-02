@@ -9,20 +9,16 @@
 
 <%= render partial: 'zines/authors' %>
 
-  <% if @zine.paragraphs.any? %>
-    <%= will_paginate @paragraphs %>
-    <ol class="zines">
-    <%= will_paginate @paragraphs %>
-      <%= render partial: 'paragraphs/paragraph', collection: @paragraphs %>
-    </div>
-    </ol>
-    <%= will_paginate @paragraphs %>
-  <% end %>
+<%= @zine.title %>
+<%= @zine.paragraphs.length %>
 
-  <% if @zine.images.any? %>
-    <%= will_paginate @images %>
-    <ol class="images">
-      <%= render partial: 'shared/image', collection: @images %>
-    </ol>
-    <%= will_paginate @images %>
-  <% end %>
+<% if @zine_contents.any? %>
+  <%= will_paginate @zine_contents %>
+  <ol id="zine-contents" class="zines">
+    <%= will_paginate @zine_contents %>
+      <%= render partial: 'shared/zine_content', collection: @zine_contents %>
+
+  </ol>
+  <%= will_paginate @zine_contents %>
+<% end %>
+

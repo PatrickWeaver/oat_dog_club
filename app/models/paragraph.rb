@@ -1,12 +1,10 @@
 class Paragraph < ActiveRecord::Base
-
-  belongs_to :zine
   has_many :images
+  has_one :zine_content, :as => :orderable
+  has_one :zine, :through => :zine_contents
 
-  default_scope -> { order('position') }
-
-  validates :zine_id, presence: true
   validates :font_size, presence: true
-  validates :border_color, presence: true
 
+  accepts_nested_attributes_for :zine_content
+  
 end

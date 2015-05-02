@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
-  belongs_to :zine
   belongs_to :paragraph
-  validates :zine_id, presence: true
+  has_one :zine_content, :as => :orderable
+  has_one :zine, :through => :zine_contents
 
   has_attached_file :image_file, :default_url => "/assets/oatpattern2.jpg"
   validates_with AttachmentContentTypeValidator, :attributes => :image_file, :content_type => /\Aimage\/.*\Z/
@@ -16,4 +16,6 @@ class Image < ActiveRecord::Base
     maximum: 250,
     too_long: "The maximum caption length is %{count} characters."
   }
+
+  accepts_nested_attributes_for :zine_content
 end

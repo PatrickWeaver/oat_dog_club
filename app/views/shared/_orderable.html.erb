@@ -1,0 +1,27 @@
+<% if @zine_contents.orderable_type == "Paragraph" %>
+  <li id="zine-content-<%= zine_content.orderable_type %>-<%= zine_content.orderable.id  %>" class="background paragraph" style="border: 10px solid <%= zine_content.border_color %>">
+
+  <% if @editor %>
+      <div class="font-size-form">
+        <%= render partial: 'paragraphs/buttons', :locals => {paragraph: paragraph } %>
+      </div>
+  <% end %>
+
+    <h2 class="p-header" style="font-size: 200%;">
+      <%= orderable.header %>
+    </h2>
+
+    <span class="content" style="">
+      <%= orderable.content %>
+    </span>
+
+    <br>
+
+    <span class="content">
+      P_ID: <%= orderable.id %> |  ZC_ID: <%= zine_content.id %> |  BC: <% if zine_content.border_color %><%= zine_content.border_color %><% else %> none<% end %><br>
+    </span>
+
+  </li>
+
+<% end %>
+

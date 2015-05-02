@@ -14,9 +14,9 @@ class ParagraphsController < ApplicationController
 
   def create
     @zine = Zine.find(params[:paragraph][:id])
-    @paragraph = @zine.paragraphs.create(paragraph_params)
+    paragraph = Paragraph.create(paragraph_params)
 
-    if @paragraph.save
+    if paragraph.save
       flash[:success] = "New paragraph created!"
       redirect_to zine_path(@zine)
     else
@@ -62,7 +62,7 @@ end
 
 
       def paragraph_params
-        params.require(:paragraph).permit(:header, :content, :border_color)
+        params.require(:paragraph).permit(:header, :content, zine_content_attributes: [ :border_color, :order, :zine_id ])
       end
 
 

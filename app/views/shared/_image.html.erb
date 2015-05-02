@@ -1,4 +1,5 @@
-<% if !image.cover %>
+<% if image.zine_content.order %>
+<% if (image.zine_content.order > 0)  %>
   <li id="image-<%= image.id  %>" class="zine-image-li" style="
     border: 
       <% if image.width > 100 %>
@@ -6,7 +7,7 @@
       <% else %>
         1px 
       <% end %>
-      solid <%= image.border_color %>;
+      solid <%= image.zine_content.border_color %>;
     max-width: 
       <% if image.width > 100 %>
         <%= image.width + 20 %>px;
@@ -21,10 +22,11 @@
 
     <br>
 
-    <div class="infoblah" >
-      id: <%= image.id %><br>
+    <div class="infoblah background" style="color: black !important;" >
+
+      Image_id: <%= image.id %><br>
+      zc_id: <%= image.zine_content.id %><br>
       url: <%= image.image_file.url %><br>
-      image cover: <%= image.cover %><br>
       p ID: <%= image.paragraph_id %><br>
       width: <%= image.width %><br>
       display caption?
@@ -34,16 +36,17 @@
           false
         <% end %><br>
       <% if image.display_caption %>caption: <%= image.try(:caption) %><br><% end %>
-      border color: <%= image.border_color %>
+      border color: <%= image.zine_content.border_color %>
     </div>
 
     <% if image.display_caption %>
       <div class="caption">
-        <%= image.try(:caption) %><br>
+        <%= image.try(:caption) %><%= link_to "image", image %><br>
       </div>
     <% end %>
 
   </li>
 
   <br><br>
+<% end %>
 <% end %>
