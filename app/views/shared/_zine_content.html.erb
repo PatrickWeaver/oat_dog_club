@@ -1,14 +1,18 @@
- <%= content_tag_for :li, zine_content do %>
+ <%= content_tag_for( :li, zine_content, class: "zine-content",  ) do %>
 
 
   <% if zine_content.orderable_type == "Paragraph" %>
 
     <div class="background paragraph" style="border: 10px solid <%= zine_content.border_color %>; font-size: <%= zine_content.orderable.font_size %>px;">
-
+    
     <% if @editor %>
-        <div class="font-size-form">
-          <%= render partial: 'paragraphs/buttons', :locals => {paragraph: zine_content.orderable } %>
-        </div>
+      <div class="zine-content-position-form">
+      <%= render partial: 'shared/zine_content_buttons', :locals => {zine_content: zine_content } %>
+      </div>
+
+      <div class="font-size-form">
+        <%= render partial: 'paragraphs/buttons', :locals => {paragraph: zine_content.orderable } %>
+      </div>
     <% end %>
 
       <h2 class="p-header" style="font-size: 200%;">
@@ -22,7 +26,7 @@
       <br>
 
       <span class="content">
-        O: <%= zine_content.order %>  |  P_ID: <%= zine_content.orderable.id %> |  ZC_ID: <%= zine_content.id %> |  BC: <% if zine_content.border_color %><%= zine_content.orderable.zine_content.border_color %><% else %> none<% end %><br>
+        O: <%= zine_content.position %>  |  P_ID: <%= zine_content.orderable.id %>  |  Type: <%= zine_content.orderable_type %>  |  ZC_ID: <%= zine_content.id %> |  BC: <% if zine_content.border_color %><%= zine_content.orderable.zine_content.border_color %><% else %> none<% end %><br>
       </span>
 
 
@@ -34,8 +38,8 @@
 
   <% if zine_content.orderable_type == "Image" %>
 
-    <% if zine_content.order %>
-    <% if (zine_content.order > 0)  %>
+    <% if zine_content.position %>
+    <% if (zine_content.position > 0)  %>
       <div class="zine-image-li" style="
         border: 
           <% if zine_content.orderable.width > 100 %>
@@ -52,6 +56,13 @@
           <% end %>
           ">
 
+      <% if @editor %>
+      <div class="zine-content-position-form">
+      <%= render partial: 'shared/zine_content_buttons', :locals => {zine_content: zine_content } %>
+      </div>
+      <% end %>
+
+
         <% if zine_content.orderable.image_file.url != '' %>
           <img src="<%= zine_content.orderable.image_file.url %>" class="zine-image" style="height: auto; max-width: <%= zine_content.orderable.width %>px;">
         <% end %>
@@ -60,7 +71,8 @@
 
         <div class="infoblah background" style="color: black !important;" >
 
-          O: <%= zine_content.order %><br>
+            Type: <%= zine_content.orderable_type %> <br>
+          Pos: <%= zine_content.position %><br>
           Image_id: <%= zine_content.orderable.id %><br>
           zc_id: <%= zine_content.id %><br>
           url: <%= zine_content.orderable.image_file.url %><br>

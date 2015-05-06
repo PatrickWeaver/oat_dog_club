@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501183705) do
+ActiveRecord::Schema.define(version: 20150506013235) do
 
   create_table "authorships", force: true do |t|
     t.integer  "user_id"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20150501183705) do
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "zine_contents", force: true do |t|
-    t.integer  "order"
+    t.integer  "position"
     t.integer  "orderable_id"
     t.string   "orderable_type"
     t.datetime "created_at"

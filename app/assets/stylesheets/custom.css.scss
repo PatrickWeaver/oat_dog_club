@@ -548,19 +548,36 @@ ul {
   list-style-image: none;
   list-style-position: outside;
   text-align: center;
-  overflow: scroll;
   li {
-  text-align: center;
-  -webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-}
--webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-}
+    text-align: center;
+      -webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 7px;
+      }
+    -webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(0,0,0,.5);
+      -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+    }
   }
+}
+
+
+.zine-content {
+  position: relative;
+
+  
+
+
+}
+
+.zine-content-position-form {
+  position: absolute;
+  margin: 5px;
+  left: 0;
+  top: 0;
+  z-index: 1000; 
+
 }
 
 .images {

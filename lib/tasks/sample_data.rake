@@ -36,7 +36,7 @@ def make_paragraph
     header: header,
     content: content,
     )
-  @zine.zine_contents.create(:orderable => paragraph, :order => @zine_count[@n], :border_color => "##{@color_lib[ @i % 5 ]}")
+  @zine.zine_contents.create(:orderable => paragraph, :position => @zine_count[@n], :border_color => "##{@color_lib[ @i % 5 ]}")
   @zine_count[@n] += 1
 end
 
@@ -68,7 +68,7 @@ def make_image
     caption: caption,
     display_caption: display_caption,
     )
-  @zine.zine_contents.create(:orderable => image, :order => @zine_count[@n], :border_color => "##{@color_lib[ ( @i % 5 ) + 5 ]}")
+  @zine.zine_contents.create(:orderable => image, :position => @zine_count[@n], :border_color => "##{@color_lib[ ( @i % 5 ) + 5 ]}")
   @zine_count[@n] += 1
 end
 

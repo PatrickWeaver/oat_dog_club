@@ -18,7 +18,7 @@
 
           <%= z.color_field :border_color, class: 'form-control' %>
           <%= z.label "Add as:" %>
-          <%= z.select(:order, options_for_select([['Cover', 0], ['First', 1]])) %>
+          <%= z.select(:position, options_for_select([['Cover', 0], ['First', 1]])) %>
           <%= z.hidden_field :zine_id, value: @zine.id %>
 
         <% end %>

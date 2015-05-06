@@ -19,7 +19,7 @@ SHOW ME THE image!
     <% end %><br>
   <% if @image.display_caption %>caption: <%= @image.try(:caption) %><br><% end %>
   border color: <%= @image.zine_content.border_color %><br>
-  order: <%= @image.zine_content.order %>
+  position: <%= @image.zine_content.position %>
 </div>
 
 <% if @image.display_caption %>

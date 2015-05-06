@@ -10,7 +10,7 @@
 <%= render partial: 'zines/authors' %>
 
 <%= @zine.title %>
-<%= @zine.paragraphs.length %>
+<%= @zine.zine_contents.length %>
 
 <% if @zine_contents.any? %>
   <%= will_paginate @zine_contents %>

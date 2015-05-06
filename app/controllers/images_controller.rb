@@ -7,6 +7,7 @@ class ImagesController < ApplicationController
   def destroy
     session[:return_to] ||= request.referer
     Image.find(params[:id]).destroy
+    flash[:success] = "Image has been deleted."
     redirect_to session.delete(:return_to)
   end
 

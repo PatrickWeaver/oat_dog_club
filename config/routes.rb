@@ -10,19 +10,21 @@ OatDogClub::Application.routes.draw do
   resources :authorships
   resources :zine_contents
 
-  match '/help',                          to: 'static_pages#help',    via: 'get'
-  match '/about',                         to: 'static_pages#about',   via: 'get'
-  match '/contact',                       to: 'static_pages#contact', via: 'get'
-  match '/signup',                        to: 'users#new',            via: 'get'
-  match '/signin',                        to: 'sessions#new',         via: 'get'
-  match '/signout',                       to: 'sessions#destroy',     via: 'delete'
-  match '/zines/:id/publish-unpublish',   to: 'zines#publish',        via: 'get'
-  match '/paragraphs/:id/font-size',      to: 'paragraphs#font_size', via: 'get'
-  match '/paragraphs/:id/delete',         to: 'paragraphs#destroy', via: 'get'
-  match '/zines/:id/title',               to: 'zines#title',          via: 'get'
-  match '/zines/:id/authors',             to: 'zines#authors',        via: 'get'
-  match '/zines/:id/:author/remove',      to: 'zines#remove_author',  via: 'get'
-  match '/zines/:id/',                    to: 'zines#add_author',     via: 'post'
+  match '/help',                          to: 'static_pages#help',      via: 'get'
+  match '/about',                         to: 'static_pages#about',     via: 'get'
+  match '/contact',                       to: 'static_pages#contact',   via: 'get'
+  match '/signup',                        to: 'users#new',              via: 'get'
+  match '/signin',                        to: 'sessions#new',           via: 'get'
+  match '/signout',                       to: 'sessions#destroy',       via: 'delete'
+  match '/zines/:id/publish-unpublish',   to: 'zines#publish',          via: 'get'
+  match '/paragraphs/:id/font-size',      to: 'paragraphs#font_size',   via: 'get'
+  match '/paragraphs/:id/delete',         to: 'paragraphs#destroy',     via: 'get'
+  match '/images/:id/delete',             to: 'images#destroy',         via: 'get'
+  match '/zines/:id/title',               to: 'zines#title',            via: 'get'
+  match '/zines/:id/authors',             to: 'zines#authors',          via: 'get'
+  match '/zines/:id/:author/remove',      to: 'zines#remove_author',    via: 'get'
+  match '/zines/:id/',                    to: 'zines#add_author',       via: 'post'
+  match '/zinecontents/:id/position',    to: 'zine_contents#position', via: 'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

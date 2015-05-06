@@ -27,7 +27,7 @@ class ZinesController < ApplicationController
       @paragraph.build_zine_content
       @image = Image.new
       @image.build_zine_content
-      cover_zc = @zine.zine_contents.where(order: 0, orderable_type: "Image").first
+      cover_zc = @zine.zine_contents.where(position: 0, orderable_type: "Image").first
       @cover = cover_zc.orderable
       @authors = @zine.users.to_a
       @zine_contents = @zine.zine_contents.paginate(page: params[:page])
