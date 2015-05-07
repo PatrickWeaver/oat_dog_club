@@ -1,6 +1,6 @@
 class Image < ActiveRecord::Base
   belongs_to :paragraph
-  has_one :zine_content, :as => :orderable
+  has_one :zine_content, :as => :orderable, dependent: :destroy
   has_one :zine, :through => :zine_contents
 
   has_attached_file :image_file, :default_url => "/assets/oatpattern2.jpg"

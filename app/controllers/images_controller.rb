@@ -26,7 +26,7 @@ class ImagesController < ApplicationController
       flash[:danger] = "Image didn't save"
       redirect_to zine_path(@zine)
     end
-end
+  end
 
   private
 

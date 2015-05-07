@@ -33,29 +33,29 @@ class ParagraphsController < ApplicationController
     redirect_to session.delete(:return_to)
   end
 
-def font_size
-  @paragraph = Paragraph.find(params[:id])
-  size_change = params[:size].to_i
-  size_now = @paragraph.font_size
-  session[:return_to] ||= request.referer
-  @paragraph = Paragraph.find(params[:id])
-  if size_change < 0
-    if size_now > 30
-      size_now += size_change * 2.5
-    elsif size_now > 6
-      size_now += size_change
+  def font_size
+    @paragraph = Paragraph.find(params[:id])
+    size_change = params[:size].to_i
+    size_now = @paragraph.font_size
+    session[:return_to] ||= request.referer
+    @paragraph = Paragraph.find(params[:id])
+    if size_change < 0
+      if size_now > 30
+        size_now += size_change * 2.5
+      elsif size_now > 6
+        size_now += size_change
+      end
+    else
+      if (30..99).include?(size_now)
+        size_now += size_change *2.5
+      elsif size_now < 30
+        size_now += size_change
+      end
     end
-  else
-    if (30..99).include?(size_now)
-      size_now += size_change *2.5
-    elsif size_now < 30
-      size_now += size_change
-    end
+    @paragraph.font_size = size_now
+    @paragraph.save
+    redirect_to session.delete(:return_to)
   end
-  @paragraph.font_size = size_now
-  @paragraph.save
-  redirect_to session.delete(:return_to)
-end
 
 
   private

@@ -1,0 +1,20 @@
+<div class="zine-content-position-form">
+
+  <div class="btn btn-sm btn-warning">
+    <strong><%= zine_content.position %></strong>
+  </div>
+  <%= link_to '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "up" }, {:class => "btn btn-sm btn-info" }%>
+  <%= link_to '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "down" }, {:class => "btn btn-sm btn-primary" }%>
+  <%= link_to '<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "top" }, {:class => "btn btn-sm btn-info" }%>
+  <%= link_to '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "bottom" }, {:class => "btn btn-sm btn-primary" }%>
+
+  <% if zine_content.orderable_type == "Image" %>
+    <%= link_to '<span class="glyphicon glyphicon-book" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "cover" }, {:class => "btn btn-sm btn-info" }%>
+    <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, {:controller => "images", :action => "destroy", :id => zine_content.orderable.id}, {:class => "btn btn-sm btn-danger",  data: { confirm: "Delete Image?" } }%>
+  <% end %>
+
+    <%= zine_content.zine.id %> -- <%= zine_content.zine_id %>
+
+
+</div>
+

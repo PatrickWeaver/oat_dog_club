@@ -4,6 +4,7 @@ namespace :db do
     make_users
     make_zines
     make_authorships
+    make_paragraph_images
   end
 end
 
@@ -41,10 +42,6 @@ def make_paragraph
 end
 
 def make_image
-  if @i.odd?
-    paragraph_id = (@n * 5) + @i 
-  end
-
   width = ( @i + 1 ) * 300
 
   if @i > 2
@@ -63,7 +60,6 @@ def make_image
 
   image = Image.create!(
     image_file: File.new(url),
-    paragraph_id: paragraph_id,
     width: width,
     caption: caption,
     display_caption: display_caption,
@@ -108,4 +104,35 @@ def make_authorships
     user.become_author!(zine2)
     user.become_author!(zine3)
   end
+end
+
+def make_paragraph_images
+  10.times do |n|
+    width = ( n + 1 ) * 300
+
+    if n > 2
+      caption = Faker::Lorem.sentence
+      if @n.even?
+        display_caption = true
+      end
+    end
+
+    paragraph_id = (n + 1) * 2
+
+    url = "app/assets/images/#{ n + 1 }.png"
+
+    image = Image.create!(
+      image_file: File.new(url),
+      paragraph_id: paragraph_id,
+      width: width,
+      caption: caption,
+      display_caption: display_caption,
+      )
+
+    image_paragraph = Paragraph.find(paragraph_id)
+    zine = image_paragraph.zine_content.zine
+
+    zine.zine_contents.create(:orderable => image, :border_color => "##{@color_lib[ ( @i % 5 ) + 5 ]}")
+  end
+
 end

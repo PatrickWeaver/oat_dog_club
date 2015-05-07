@@ -18,7 +18,18 @@ class ZinesController < ApplicationController
   end
 
   def show
+
     @zine = Zine.find(params[:id])
+
+
+    position_0 = @zine.zine_contents.where(position: 0).first
+    if position_0
+      if position_0.orderable_type == "Paragraph"
+        placeholder_cover = ZineContent.create!(zine: @zine, border_color: '#000000')
+        placeholder_cover.insert_at(0)
+      end
+    end
+
     @user = current_user
 
 
@@ -28,9 +39,13 @@ class ZinesController < ApplicationController
       @image = Image.new
       @image.build_zine_content
       cover_zc = @zine.zine_contents.where(position: 0, orderable_type: "Image").first
-      @cover = cover_zc.orderable
+      if cover_zc
+        @cover = cover_zc.orderable
+      else
+        @cover = nil
+      end
       @authors = @zine.users.to_a
-      @zine_contents = @zine.zine_contents.paginate(page: params[:page])
+      @zine_contents = @zine.zine_contents.where('position > 0').paginate(page: params[:page])
       @paragraphs = @zine.paragraphs.paginate(page: params[:page])
       @images = @zine.images.where(:paragraph_id => nil).paginate(page: params[:page])
       def get_images_for_paragraph(paragraph)

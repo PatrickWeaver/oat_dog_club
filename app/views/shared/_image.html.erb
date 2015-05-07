@@ -1,5 +1,8 @@
 <% if image.zine_content.position %>
 <% if (image.zine_content.position > 0)  %>
+
+
+
   <li id="image-<%= image.id  %>" class="zine-image-li" style="
     border: 
       <% if image.width > 100 %>
@@ -15,7 +18,10 @@
         <%= image.width + 2 %>px; font-size: 10px;
       <% end %>
       ">
-
+    <% if @editor %>
+      <%= render partial: 'shared/image_buttons', :locals => {zine_content: image.zine_content } %>
+    <% end %>
+    
     <% if image.image_file.url != '' %>
       <img src="<%= image.image_file.url %>" class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
     <% end %>
@@ -36,7 +42,7 @@
           false
         <% end %><br>
       <% if image.display_caption %>caption: <%= image.try(:caption) %><br><% end %>
-      border color: <%= image.zine_content.border_color %>
+      border coloiir: <%= image.zine_content.border_color %>
     </div>
 
     <% if image.display_caption %>
