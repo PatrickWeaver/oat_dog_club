@@ -24,7 +24,9 @@ OatDogClub::Application.routes.draw do
   match '/zines/:id/authors',             to: 'zines#authors',          via: 'get'
   match '/zines/:id/:author/remove',      to: 'zines#remove_author',    via: 'get'
   match '/zines/:id/',                    to: 'zines#add_author',       via: 'post'
-  match '/zinecontents/:id/position',    to: 'zine_contents#position', via: 'get'
+  match '/zinecontents/:id/position',     to: 'zine_contents#position', via: 'get'
+  match '/covers/:id/remove',             to: 'covers#destroy',         via: 'get'
+  match '/covers/:id/make-cover',         to: 'covers#cover', via: 'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

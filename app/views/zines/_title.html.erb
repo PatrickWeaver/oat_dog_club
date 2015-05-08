@@ -2,17 +2,13 @@
   
   <div class="<% if @cover %>background<% end %> zine-title-block" >
 
+  
   <% if @cover %>
-    <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove Cover!'.html_safe, {:controller => "zine_contents", :action => "position", :id => @cover.zine_content.id, :direction => "remove-cover" }, {:class => "btn btn-sm btn-warning remove-cover" }%>
+    <% if @editor %>
+      <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove Cover!'.html_safe, {:controller => "covers", :action => "destroy", :id => @cover.id }, {:class => "btn btn-sm btn-warning remove-cover" }%>
     <% end %>
 
-  <% if @cover %>
-    <img src="<%= @cover.image_file.url %>" class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
-  <% end %>
-
-<% if @cover %>
-  zc:<%= @cover.zine_content.id %><br>
-  ord:<%= @cover.id %>
+    <img src="<%= @cover.cover_image.url %>" class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
   <% end %>
 
   <br>

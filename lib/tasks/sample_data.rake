@@ -15,7 +15,7 @@ def make_users
                password: "password",
                password_confirmation: "password",
                admin: true)
-  99.times do |n|
+  29.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@oatdog.club"
     password  = "password"
@@ -68,7 +68,6 @@ def make_image
   @zine_count[@n] += 1
 end
 
-
 def make_zines
   5.times do |n|
     @n = n
@@ -76,7 +75,7 @@ def make_zines
     @zine = Zine.create!(
       title: title,
       published: true )
-    @zine_count << 0
+    @zine_count << 1
 
     5.times do |i|
       @i = i
@@ -88,6 +87,8 @@ def make_zines
         make_paragraph
       end
     end
+
+    @zine.create_cover!(:width => ( (@i + 1) * 300 ), border_color: "#000000", cover_image: File.new("app/assets/images/#{ @i + 1 }.png" ) )
 
   end
 end
@@ -129,10 +130,6 @@ def make_paragraph_images
       display_caption: display_caption,
       )
 
-    image_paragraph = Paragraph.find(paragraph_id)
-    zine = image_paragraph.zine_content.zine
-
-    zine.zine_contents.create(:orderable => image, :border_color => "##{@color_lib[ ( @i % 5 ) + 5 ]}")
   end
 
 end

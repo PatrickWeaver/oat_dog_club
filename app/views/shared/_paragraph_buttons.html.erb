@@ -11,8 +11,5 @@
   <% if zine_content.orderable_type == "Paragraph" %>
     <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, {:controller => "paragraphs", :action => "destroy", :id => zine_content.orderable.id}, {:class => "btn btn-sm btn-danger",  data: { confirm: "Delete Paragraph?" } }%>
   <% end %>
-
-  <%= zine_content.zine.id %> -- <%= zine_content.zine_id %>
-
 </div>
 
