@@ -1,6 +1,12 @@
-<div class="form background new-image-form form-button box invisible">
-
-  <small class="close-box"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
+<div class="form background form-button image-form
+  <% if paragraph %>
+  new-paragraph-image
+  <% else %>
+  new-image-form 
+  <% end %>
+ box invisible">
+ 
+  <small class="zine-content-close-box"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
 
 
   <h2>New Image!</h2>
@@ -8,34 +14,33 @@
   <div class="row">
     <div class="form-pad">
       <%= form_for(@image, multipart:true) do |f| %>
-        <%= render 'shared/error_messages' %>
 
         <div class="field">
           <%= f.file_field :image_file %>
         </div>
 
-        <%= f.text_area :caption, class: 'form-control',  :placeholder => "&nbsp;Caption".html_safe %>
-
-        <%= f.label "Display Caption?" %>
-        <span style="float: right;">
-        <%= f.check_box :display_caption, options = {checked: true, class: 'form-control', :data => { 'on-color' => 'success', 'off-color' => 'danger', 'on-text' => 'Yes', 'off-text' => 'No' } } %>
-        </span>
+        <%= f.text_area :caption, class: 'form-control',  :placeholder => "&nbsp;Caption".html_safe, :class => "caption-text-area", :id => "caption-text-area-new", :maxLength => "250"  %>
         <br><br>
+        <% if paragraph %>
+        <% else %>
+          <%= f.fields_for :zine_content do |z| %>
+            <%= z.label "Border Color:" %>
+            <%= z.text_field :border_color, :placeholder => "#FFFFFF", :class => "colorpicker" %>
 
-        <%= f.fields_for :zine_content do |z| %>
+            <%= z.label "Add at:" %>
+            <%= z.number_field :position,:placeholder => (@zine_contents.length + 1), within: 1..(@zine_contents.length + 1) %>
 
-          <%= z.color_field :border_color, class: 'form-control' %>
-          <%= z.label "Add as:" %>
-          <%= z.select(:position, options_for_select([['Cover', 0], ['First', 1]])) %>
-          <%= z.hidden_field :zine_id, value: @zine.id %>
+            <%= z.hidden_field :zine_id, value: @zine.id %>
 
+          <% end %>
         <% end %>
-
-        <%= f.text_field :width, class: 'form-control' %>
+        <%= f.label "Max Width:" %>
+        <%= f.number_field :width %>
         <%= f.hidden_field :id, value: @zine.id %>
 
-        <br><br>
-
+        <% if paragraph %>
+          <%= f.hidden_field :paragraph_id, value: paragraph.id %>
+        <% end %>
 
 
         <%= f.submit "Create Image!", class: "btn btn-primary" %>

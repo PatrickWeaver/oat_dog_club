@@ -1,17 +1,18 @@
-<li id="paragraph-<%= paragraph.id  %>" class="background paragraph" style="border: 10px solid <%= paragraph.zine_content.border_color %>; font-size: <%= paragraph.font_size %>px;">
+<div id="paragraph-<%= paragraph.id  %>" class="background paragraph" style=
+  "border: 
+    <% if paragraph.zine_content.border_color == "None" %>
+      None;
+    <% else %>
+      10px solid <%= paragraph.zine_content.border_color %>; 
+      font-size: <%= (paragraph.font_size / 14.0) %>em;
+    <% end %>
+">
 
   <% if @editor %>
     <%= render partial: 'shared/paragraph_buttons', :locals => {zine_content: paragraph.zine_content } %>
   <% end %>
 
-
-<% if @editor %>
-    <div class="font-size-form">
-      <%= render partial: 'paragraphs/buttons', :locals => {paragraph: paragraph } %>
-    </div>
-<% end %>
-
-  <h2 class="p-header" style="font-size: 200%;">
+  <h2 class="p-header">
     <%= paragraph.header %>
   </h2>
 
@@ -21,13 +22,8 @@
 
   <br>
 
-  <span class="content">
-    P_ID: <%= paragraph.id %> |  ZC_ID: <%= paragraph.zine_content.id %> |  BC: <% if paragraph.zine_content.border_color %><%= paragraph.zine_content.border_color %><% else %> none<% end %><br>
-  </span>
+  <ul class="paragraph-images">
+  <%= render partial: 'shared/image', collection: Image.where(paragraph: paragraph ) %>
+  </ul> 
 
-
-        <ul class="zines">
-        <%= render partial: 'shared/image', collection: Image.where(paragraph: paragraph ) %>
-        </ul>
-
-</li>
+</div>

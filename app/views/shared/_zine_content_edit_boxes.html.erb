@@ -1,0 +1,31 @@
+<div class="move-to-edit background invisible box">
+  <%= render partial: 'shared/move_to', :locals => {zine_content: zine_content } %>
+</div>
+
+<div class="border-color-edit background invisible box">
+  <%= render partial: 'shared/border_color', :locals => {zine_content: zine_content } %>
+</div>
+
+<% if zine_content.orderable_type == "Paragraph" %>
+  <%= render partial: 'images/new', :locals => {paragraph: zine_content.orderable } %>
+<% end %>
+
+<% if zine_content.orderable_type == "Image" %>
+
+  <div class="image-resize background invisible box">
+      <%= render partial: 'shared/image_resize', :locals => {image: zine_content.orderable } %>
+  </div>
+
+  <% if zine_content.orderable.paragraph_id %>
+  <% else %>
+    
+  <% end %>
+  <div id="" class="edit-caption background invisible box">
+    <%= render partial: 'shared/edit_caption', :locals => {image: zine_content.orderable } %>
+  </div>
+<% end %>
+
+
+
+
+

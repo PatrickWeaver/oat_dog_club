@@ -35,6 +35,7 @@ gem 'jquery-rails', '3.0.4'
 gem 'jquery-ui-rails'
 gem 'jbuilder', '1.0.2'
 gem 'bootstrap-switch-rails'
+gem 'bootstrap-colorpicker-rails'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

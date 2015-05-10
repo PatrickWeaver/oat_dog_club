@@ -14,7 +14,7 @@ class ZinesController < ApplicationController
   end
 
   def index
-    @zines = Zine.paginate(page: params[:page])
+    @zines = Zine.where(published: true).paginate(page: params[:page])
   end
 
   def show
@@ -28,6 +28,7 @@ class ZinesController < ApplicationController
       @image = Image.new
       @image.build_zine_content
       @cover = @zine.cover
+      @new_cover = Cover.new
       @authors = @zine.users.to_a
       @zine_contents = @zine.zine_contents.paginate(page: params[:page])
       @paragraphs = @zine.paragraphs.paginate(page: params[:page])
@@ -42,6 +43,13 @@ class ZinesController < ApplicationController
           false
         end
       @font_size = @paragraph.font_size
+
+      new_position_options = [['First', 1]]
+      for i in 2..@zine_contents.length do
+        new_position_options << ["#{i}", i]
+      end
+      new_position_options << ['Last', ( @zine_contents.length + 1 ) ]
+      @new_position_options = new_position_options
 
 
 
@@ -143,7 +151,7 @@ class ZinesController < ApplicationController
     redirect_to session.delete(:return_to)
   end
 
-  def destroy
+  def delete
     session[:return_to] ||= request.referer
     @zine = Zine.find(params[:id])
     @zine.destroy

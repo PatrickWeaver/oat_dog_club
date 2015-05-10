@@ -24,29 +24,34 @@ class ZineContentsController < ApplicationController
     redirect_to session.delete(:return_to)
   end
 
-end
-
-
-def font_size
-  @paragraph = Paragraph.find(params[:id])
-  size_change = params[:size].to_i
-  size_now = @paragraph.font_size
-  session[:return_to] ||= request.referer
-  @paragraph = Paragraph.find(params[:id])
-  if size_change < 0
-    if size_now > 30
-      size_now += size_change * 2.5
-    elsif size_now > 6
-      size_now += size_change
+  def hide_border_color
+    session[:return_to] ||= request.referer
+    zine_content = ZineContent.find(params[:id])
+    zine_content.border_color = "None"
+    if zine_content.save
+      flash[:success] = "Border hidden!"
+    else
+      flash[:danger] = "Border not hidden :("
     end
-  else
-    if (30..99).include?(size_now)
-      size_now += size_change *2.5
-    elsif size_now < 30
-      size_now += size_change
-    end
+    redirect_to session.delete(:return_to)
+
   end
-  @paragraph.font_size = size_now
-  @paragraph.save
-  redirect_to session.delete(:return_to)
+
+  def update
+    session[:return_to] ||= request.referer
+    zine_content = ZineContent.find(params[:id])
+    if zine_content.update_attributes(zine_content_params)
+      flash[:success] = "Image updated!"
+    else
+      flash[:danger] = "Image not updated :("
+    end
+    redirect_to session.delete(:return_to)
+  end
+
+  private
+
+      def zine_content_params
+      params.require(:zine_content).permit(:border_color, :position)
+    end
+
 end

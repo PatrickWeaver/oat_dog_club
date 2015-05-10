@@ -1,0 +1,27 @@
+<div class="background edit-zine-content-form">
+
+  <small class="zine-content-close-box"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
+
+
+  <h2>Add Cover!</h2>
+
+  <div class="row">
+    <div class="form-pad">
+      <%= form_for(@new_cover, multipart:true) do |f| %>
+        <div class="field">
+          <%= f.file_field :cover_image %>
+        </div>
+        <% if false %>
+        <%= f.label "Border Color:" %>
+        <%= f.text_field :border_color, :placeholder => "#000000", :class => "colorpicker" %>
+        <% end %>
+        <%= f.label "Width:" %>
+        <%= f.text_field :width, class: 'form-control' %>
+        <%= f.hidden_field :id, value: @zine.id %>
+
+        <%= f.submit "Add!", class: "btn btn-primary" %>
+      <% end %>
+      
+    </div>
+  </div>
+</div>

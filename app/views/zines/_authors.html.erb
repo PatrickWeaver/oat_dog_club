@@ -2,7 +2,7 @@
   <div class="twin-boxes author-section">
     <% if @zine.show_authors %>
     <div class="authors twin-box">
-      <p class="balance-header">Authors:</p>
+      <h2>Authors:</h2>
       <% if @authors %>
         <ul class="authors-list">
         <%= render partial: 'zines/author', collection: @authors %>
@@ -11,8 +11,8 @@
     </div>
     <% end %>
     
-    <div class="authors edit-authors invisible box">
-      <small class="close-box title-unhide"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
+    <div class="edit-authors invisible box">
+      <small class="authors-close-box title-unhide"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
       <p class="balance-header">Edit Authors:</p>
       <% if @authors %>
         <ul class="authors-list">

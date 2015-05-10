@@ -1,19 +1,18 @@
-<%= content_tag_for( :li, zine_content, class: "zine-content",  ) do %>
-
+<%= content_tag_for( :li, zine_content, class: "zine-content zine-content-container",  ) do %>
   <% if zine_content.orderable %>
 
-    <% if zine_content.orderable_type == "Paragraph" %>
+    <div id="zine-content-display" class="orderable">
 
-      <%= render partial: 'shared/paragraph', :locals => {paragraph: zine_content.orderable } %>
+        <% if zine_content.orderable_type == "Paragraph" %>
+            <%= render partial: 'shared/paragraph', :locals => {paragraph: zine_content.orderable } %>
+        <% end %>
+        <% if zine_content.orderable_type == "Image" %>
+          <%= render partial: 'shared/image', :locals => {image: zine_content.orderable } %>
+        <% end %>
+        
+    </div>
 
-    <% end %>
-
-    <% if zine_content.orderable_type == "Image" %>
-
-      <ul class="zines">
-      <%= render partial: 'shared/image', :locals => {image: zine_content.orderable } %>
-      </ul>
-    <% end %>
+    <%= render partial: 'shared/zine_content_edit_boxes', :locals => {zine_content: zine_content } %>
 
   <% end %>
 <% end %>

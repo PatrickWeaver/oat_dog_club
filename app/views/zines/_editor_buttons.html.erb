@@ -13,6 +13,13 @@
       <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>&nbsp;&nbsp;Add Image
     </button>
 
+    <% if @cover %>
+    <% else %>
+    <button type="button" class="toggle-publish btn new-cover-button btn-success">
+      <span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;&nbsp;Add Cover
+    </button>
+    <% end %>
+
     <button type="button" class="toggle-publish btn edit-title-button btn-warning">
       <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp;&nbsp;Title
     </button>

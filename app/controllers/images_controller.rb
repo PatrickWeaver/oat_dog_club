@@ -28,9 +28,20 @@ class ImagesController < ApplicationController
     end
   end
 
+  def update
+    session[:return_to] ||= request.referer
+    image = Image.find(params[:id])
+    if image.update_attributes(image_params)
+      flash[:success] = "Image updated"
+    else
+      flash[:danger] = "Image not updated :("
+    end
+    redirect_to session.delete(:return_to)
+  end
+
   private
 
     def image_params
-      params.require(:image).permit(:caption, :cover, :width, :display_caption, :border_color, :image_file, zine_content_attributes: [ :border_color, :order, :zine_id ])
+      params.require(:image).permit(:caption, :width, :display_caption, :image_file, :paragraph_id, zine_content_attributes: [ :border_color, :position, :zine_id ])
     end
 end

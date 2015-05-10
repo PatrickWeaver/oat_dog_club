@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-switch
+//= require bootstrap-colorpicker
 //= require_tree .

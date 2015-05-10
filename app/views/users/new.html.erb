@@ -10,7 +10,6 @@
   <div class="">
     <div class="">
       <%= form_for(@user, multipart:true) do |f| %>
-        <%= render 'shared/error_messages' %>
 
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control' %>
@@ -25,7 +24,7 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
 
         <div class="field">
-          <%= f.label :profile_picture, "Image (optional)" %>
+          <%= f.label :profile_picture, "Profile Image (optional)" %>
           <%= f.file_field :profile_picture %>
         </div>
         <%= f.submit "Join the club!", class: "btn btn-primary" %>

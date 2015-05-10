@@ -1,0 +1,22 @@
+<div class="background edit-zine-content-form">
+  <small class=
+    <% if image.zine_content %>
+      "zine-content-close-box"
+    <% else %>
+      "paragraph-image-close-box"
+    <% end %>
+  ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
+  
+  <%= form_for(image) do |f| %>
+    <div class="field close-box-field">
+      <%= f.label "Caption" %>
+      <%= f.text_area :caption, :placeholder => image.caption, :id => "caption-text-area-#{image.id}", :maxLength => "200" %>
+      <p id="counter"></p>
+    </div>
+
+      <button type"button" class="btn btn-large btn-success toggle-boolean form-button">
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;Save
+      </button>
+  <% end %>
+
+</div>

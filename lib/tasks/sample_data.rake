@@ -46,9 +46,6 @@ def make_image
 
   if @i > 2
     caption = Faker::Lorem.sentence
-    if @n.even?
-      display_caption = true
-    end
   end
 
   url = 
@@ -61,8 +58,7 @@ def make_image
   image = Image.create!(
     image_file: File.new(url),
     width: width,
-    caption: caption,
-    display_caption: display_caption,
+    caption: caption
     )
   @zine.zine_contents.create(:orderable => image, :position => @zine_count[@n], :border_color => "##{@color_lib[ ( @i % 5 ) + 5 ]}")
   @zine_count[@n] += 1
@@ -113,9 +109,6 @@ def make_paragraph_images
 
     if n > 2
       caption = Faker::Lorem.sentence
-      if @n.even?
-        display_caption = true
-      end
     end
 
     paragraph_id = (n + 1) * 2
@@ -126,8 +119,7 @@ def make_paragraph_images
       image_file: File.new(url),
       paragraph_id: paragraph_id,
       width: width,
-      caption: caption,
-      display_caption: display_caption,
+      caption: caption
       )
 
   end

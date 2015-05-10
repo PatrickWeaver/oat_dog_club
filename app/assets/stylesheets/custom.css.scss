@@ -4,24 +4,31 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
-
-$header-background: pink;
+$gray-dark: #454545;
+$header-background: #e77;
+$header-background2: #d66;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
+
 }
 
 
 /* universal */
 
 body {
-  padding-top: 60px;
-  background-image: url("oatpattern3.jpg");
+  padding-top: 1em;
+  width: 70%;
+  margin: 50px 15% 0;
   background-repeat: repeat;
   background-size: 200px 200px;
+  word-wrap: break-word;
+
 }
+
+li {}
 
 a {
   text-decoration: none;
@@ -36,10 +43,6 @@ a {
     }
 }
 
-.container {
-  width: auto;
-  padding: 0 3%;
-}
 
 section {
   overflow: auto;
@@ -65,41 +68,205 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin: 5px 0 10px;
   text-align: center;
 }
-
 h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
+  font-size: 2em;
+  letter-spacing: 0px;
+  margin-bottom: 5px 0 5px;
   text-align: center;
   font-weight: normal;
-  color: $gray-light;
+  color: $gray-dark;
+  margin-top: 5px;
 }
 
 p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+  font-size: 1em;
+  line-height: 1em;
 }
 
 
 /* header */
 
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  &:hover {
+.navbar {
+  min-height: 0;
+  max-height: 50px;
+
+  .navbar-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+  }
+
+  .navbar-left {
+    max-height: 50px;
+    float: left;
+
+    .logo {
+    float: left;
+    margin-right: 10px;
+    font-size: 1.7em;
     color: white;
-    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    font-weight: bold;
+    &:hover {
+      color: white;
+      text-decoration: none;
+      }
+    }
+
+    .oat-dog-logo {
+    height: 44px;
+    margin: 3px 10px;
+    float: left;
+    }
+
   }
 }
+
+.phone-navbar {
+  display: none;
+  width: 100%;
+  z-index: 5000;
+  height: 250px;
+  position: fixed;
+
+  .phone-logo {
+    float: right;
+    font-size: 3em;
+    color: white;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    margin-right: 10px;
+    font-weight: bold;
+    text-align: right;
+    width: 100%;
+    }
+
+    .phone-oat-dog-logo {
+      height: 240px;
+      margin: 5px 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      max-width: 20%;
+    }
+
+    .phone-nav-ul {
+      list-style: none;
+      float: right;
+      color: white;
+      text-align: left;
+      font-size: 1.2em;
+      margin: 0;
+      padding: 0;
+
+      max-width: 80%;
+
+    }
+
+    .phone-nav-li {
+      display: inline;
+      font-weight: bold;
+      font-size: 1em;
+      letter-spacing: -3px;
+      margin: 0 5px 0;
+      padding: 30px 15px;
+      float: right;
+      position: none;
+      a {
+        color: white;
+        &:active {
+        text-decoration: none;
+        color: $gray;
+        }
+        &:focus {
+        text-decoration: none;
+        color: $gray;
+        }
+      }
+      ul {
+        li {
+          float: left;
+        }
+      }
+    }
+
+
+    
+  .navbar-left {
+    
+
+  }
+
+}
+
+.phone-dropdown-menu {
+  width: 100%;
+  background-color: $header-background2;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin-top: 250px;
+  font-size: 150%;
+  list-style-type: none;
+  z-index: 4999;
+  color: white;
+  font-weight: bold;
+  font-size: 150%;
+  text-align: center;
+  line-height: 200%;
+  ul {
+  list-style: none;
+  a {
+    color: white;
+    &:active {
+      text-decoration: none;
+      color: $gray;
+    }
+    &:focus {
+      text-decoration: none;
+      color: $gray;
+    }
+  }
+  }
+}
+
+
+.nav {
+  li {
+   a {
+   font-size: 1.15em;
+   color: white;
+   text-align: center;
+   }
+   ul {
+   background-color: $header-background;
+   }
+  }
+}
+
+.container {
+  width: auto;
+  margin: 0 3%;
+  position: relative;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* footer */
 
@@ -185,22 +352,119 @@ aside {
   margin-top: 15px;
 }
 
+/* PROFILE PAGE */
+
+.user-profile {
+  width: 100%;
+  margin: 1em 0;
+  display: block;
+  #profile-container {
+  overflow: auto;
+  width: 100%;
+    img {
+    width: 80%;
+    margin: 0 10%;
+    height: auto;
+    display: block;
+    }
+    ul.user-zines {
+    width: 100%;
+    display: block;
+    list-stype-type: none;
+    }
+  }
+}
+
+#user-info-profile {
+  width: 30%;
+  text-align: center;
+  float: left;
+
+
+}
+
+#user-zines-profile {
+  width: 67%;
+  margin-left: 3%;
+  text-align: left;
+  float: left;
+
+}
+
+ul.user-zines {
+  text-align: left;
+  list-style: none;
+  margin: 0;
+  letter-spacing: 0;
+  width: 100%;
+  overflow: auto;
+} 
+
+
+.zine-list-zine {
+  width: 100%;
+  margin: 0 0 1em;
+  overflow: auto;
+
+  .zine-name {
+    float: right;
+    display: inline-block;
+    text-align: right;
+    font-size: 1.428em;
+  }
+
+  .zine-delete-button {
+    float: right;
+    width: 25%;
+    text-align: center;
+
+  }
+
+  .zine-publish-button {
+    float: right;
+    width: 25%;
+    text-align: center;
+  }
+}
+
+.zine-list-publish {
+  min-width: 110px;
+}
+
+
 /* forms */
 
 #sign-up-form {
-  width: 50%;
-  margin: 0 25%;
+  width: 80%;
+  margin: 0 10%;
 }
 
-input, textarea, select, .uneditable-input {
+.sign-in-form {
+  padding: 20px;
+  width: 80%;
+  margin: 0 10%;
+}
+
+input[type=text], input[type=password], input[type=number], textarea, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
 
-input {
+input[type=submit] {
+  font-size: 2em;
+  text-align: center;
+  margin: .5em 0 .5em;
+}
+
+input[type=file] {
+   margin: .5em 0 .5em;
+}
+
+input, textarea {
   height: auto !important;
+  font-size: 2em;
 }
 
 #error_explanation {
@@ -216,6 +480,10 @@ input {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+.edit-caption {
+  position: relative;
 }
 
 
@@ -244,24 +512,55 @@ input {
 
 /* STUFF I ADDED */
 
-.jumbotron {
+.jumbotron.center {
   background-color:rgba(238,238,238,0.85);
+  padding: 20px 30px;
+}
+
+.jumbotron-container {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+}
+
+#oat-dog {
+  float: left;
+  width: 25%;
+  img {
+  width: 100%;
+  float: left;
+  }
+}
+
+.right-button {
+  text-align: right;
+  padding: 25px;
+}
+
+#oat-dog-speaks {
+  width: 65%;
+  font-size: 2em;
+  padding: 1em 30px;
+  text-align: justify;
+  margin: 0 30px 0 35%;
+}
+
+#contact-container {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  padding: 50px;
 }
 
 .dropdown-menu {
-  background-color: red;
 }
 
 header {
   background-color: $header-background;
 
   ul {
-    background-color: red;
     li {
     color: black;
-    background-color: red;
       &:hover {
-        color: blue;
       }
       a {
         color: black;
@@ -302,6 +601,7 @@ header {
 .zine-title-container {
   position: relative;
   margin: 1em;
+  min-height: 12em;
 
 }
 
@@ -316,6 +616,14 @@ header {
   display: inline-block;
 }
 
+#zine-title {
+  width: 100%;
+}
+
+#below-title {
+  width: 100%;
+}
+
 .zine-title {
   padding: 5px;
   background-color:rgba(238,238,238,0.85);
@@ -326,7 +634,9 @@ header {
 }
 
 #buttons {
-  margin: 0 0 2em;
+  margin: 0 0 1em;
+  text-align: center;
+  display: block;
 }
 
 .form {
@@ -335,18 +645,16 @@ header {
 }
 
 
-.close-box {
+.zine-content-close-box, .authors-close-box, .paragraph-image-close-box{
   position: absolute;
   top: 0;
   right: 0;
   margin: 10px;
-  font-size: 20px;
+  font-size: 1.428em;
 
 
 }
 .new-zine-form {
-  width: 40%;
-  font-size: 26px;
   margin: 0 30% 2em 30% ;
   padding: 1em 2%;
   border: 1px solid $gray;
@@ -365,42 +673,59 @@ header {
 }
 
 .new-paragraph-form {
-  width: 40%;
-  font-size: 26px;
-  margin: 0 30% 2em 30% ;
+  width: 80%;
+  margin: 0 10% 2em;
   padding: 1em 2%;
   border: 1px solid $gray;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   position: relative;
-    div.form-pad {
-      padding: 20px;;
-    }
 }
 
-.new-image-form {
-  width: 40%;
-  font-size: 26px;
-  margin: 0 30% 2em 30% ;
+div.form-pad {
+  padding: 20px;;
+}
+
+.image-form {
+  width: 80%;
+  margin: 0 10% 2em;
   padding: 1em 2%;
   border: 1px solid $gray;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   position: relative;
-    div.form-pad {
-      padding: 20px;;
-    }
 }
+
+.big-form-text {
+  font-size: 2em;
+}
+
+label {
+  font-size: 1.57em;
+}
+
 
 .edit-title-form {
+}
+
+.remove-cover-resize-cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 25px;
+}
+
+
+.edit-zine-content-form {
+  position: relative;
   background-color:rgba(238,238,238,0.85);
   display: inline-block;
-  position: absolute;
   white-space: normal;
-  margin: 0;
-  font-size: 26px;
+  width: 70%;
+  margin: 1em 15%;
+  font-size: 1em;
   padding: 1em 2%;
   border: 1px solid $gray;
   -webkit-border-radius: 5px;
@@ -410,30 +735,32 @@ header {
       padding: 20px;;
     }
   text-align: center;
-  min-width: 300px;
   z-index: 1000;
 }
 
-.remove-cover {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 25px;
+.edit-paragraph-image-form {
+  position: relative;
+  background-color:rgba(238,238,238,0.85);
+  display: inline-block;
+  white-space: normal;
+  width: 70%;
+  margin: 1em 15%;
+  font-size: 1em;
+  padding: 1em 2%;
+  border: 1px solid $gray;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+    div.form-pad {
+      padding: 20px;;
+    }
+  text-align: center;
+  z-index: 1000;
 }
 
-.font-size-form {
-  font-size: 18px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
 
-
-
-}
 
 .balance-header {
-  font-size: 125%;
   text-align: center;
 }
 
@@ -441,7 +768,7 @@ header {
   border: 10px solid #D0D0E8;
   background-color: #F8F8F8;
   padding: 5px 20px 20px;
-  margin: 4em 20px 0;
+  margin: 1em 20px 1em;
   text-align: left;
   position: relative;
 
@@ -452,6 +779,9 @@ header {
   background-color: #E8E8E8;
   border: 10px solid #E8D0D0;
   padding: 5px 30px 20px 20px;
+  position: relative;
+  text-align: left;
+  margin-bottom: 1em;
 }
 
 .dark-changes {
@@ -469,7 +799,7 @@ header {
 
 
 .author {
-  font-size: 20px;
+  font-size: 1.428em;
   text-decoration: none;
   color: $gray;
   padding: 2px;
@@ -500,7 +830,7 @@ header {
 
 
 .big-comma {
-  font-size: 150%;
+  font-size: 1.428em;
 }
 
 .add-author {
@@ -514,13 +844,23 @@ header {
   z-index: 50;
 }
 
+.zine-content-container {
+  margin: 1em 0;
+}
+
 .zine-image-li {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
-  margin: 10px;
 
 }
+.images-list {
+  text-align: center;
+}
+.zine-image-inside-wrapper {
+  float: left;
+}
+
 
 .zine-image {
   height: auto;
@@ -541,6 +881,7 @@ ol {
 
 ul {
   padding: 0;
+  margin: 0;
 }
 
 .zines {
@@ -549,7 +890,7 @@ ul {
   list-style-position: outside;
   text-align: center;
   li {
-    text-align: center;
+    text-align: left;
       -webkit-scrollbar {
       -webkit-appearance: none;
       width: 7px;
@@ -571,13 +912,17 @@ ul {
 
 }
 
-.zine-content-position-form {
+.content-buttons {
   position: absolute;
   margin: 5px;
   left: 0;
   top: 0;
   z-index: 1000; 
-
+  text-align: left;
+  .btn {
+  margin-bottom: 5px;
+  min-width: 34px;
+  }
 }
 
 .images {
@@ -589,12 +934,25 @@ ul {
 
 .content {
 
+
 }
 
+.zine-content-edit-button {
+  float: left;
+
+
+}
+
+
+.zine-content-edit-buttons {
+  float: left;
+  margin-left: 5px;
+
+}
 .paragraph {
     text-align: left;
     position: relative;
-    margin: 20px;
+    width: 100%;
 
 
 }
@@ -604,7 +962,14 @@ ul {
   padding: 10px;
   text-align: left;
   white-space: normal;
+  word-wrap: break-word;
+  margin: 0;
+  font-size: 1.143em;
 
+}
+
+.caption-text-area {
+margin-bottom: 5px;
 }
 
 
@@ -653,5 +1018,58 @@ ul {
   padding: 0.2em;
   color:   white;
   display: none;
+}
+
+
+
+@media (max-device-width: 980px) {
+  body {
+  width: 100%;
+  margin: 250px 0 0;
+  padding-bottom: 0px;
+      font-size: 300%;
+      li {}
+      h1, h2 {
+        font-size: 200%;
+      }
+  .container {
+    margin: 0 10px;
+  }
+
+  }
+  .navbar {
+    display: none;
+  }
+
+  .phone-navbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .zine-title-container {
+  margin-top: 0px;
+  }
+
+  .btn {
+    padding: 18px 28px;
+    font-size: 28px;
+    line-height: normal;
+    margin: 10px;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
+
+  .zine-list-publish {
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+    line-height: normal !important;
+    margin: 5px !important;
+    -webkit-border-radius: 5px !important;
+       -moz-border-radius: 5px !important;
+            border-radius: 5px !important;
+    }
 }
 

@@ -1,6 +1,6 @@
 <div class="form invisible background new-paragraph-form form-button box">
 
-  <small class="close-box"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
+  <small class="zine-content-close-box"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></small>
 
 
   <h2>New Paragraph!</h2>
@@ -8,17 +8,19 @@
   <div class="row">
     <div class="form-pad">
       <%= form_for(@paragraph, multipart:true) do |f| %>
-        <%= render 'shared/error_messages' %>
 
-        <%= f.text_field :header, class: 'form-control', :placeholder => "&nbsp;Header".html_safe %>
+        <%= f.text_field :header, :placeholder => "&nbsp;Header".html_safe %>
 
-        <%= f.text_area :content, class: 'form-control',  :placeholder => "&nbsp;Text".html_safe %>
+        <%= f.text_area :content, :placeholder => "&nbsp;Text".html_safe %>
 
         <%= f.fields_for :zine_content do |z| %>
 
-          <%= z.color_field :border_color, class: 'form-control' %>
-          <%= z.label "Add as:" %>
-          <%= z.select(:position, options_for_select([['Cover', 0], ['First', 1]])) %>
+          <%= z.label "Border Color:" %>
+          <%= z.text_field :border_color, :placeholder => "#FFFFFF", :class => "colorpicker" %>
+
+          <%= z.label "Add at:" %>
+          <%= z.number_field :position,:placeholder => (@zine_contents.length + 1), within: 1..(@zine_contents.length + 1) %>
+
           <%= z.hidden_field :zine_id, value: @zine.id %>
 
         <% end %>

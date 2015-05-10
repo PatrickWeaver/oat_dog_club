@@ -37,6 +37,8 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
+    bootstrap-colorpicker-rails (0.4.0)
+      railties (>= 4.0)
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
@@ -191,6 +193,7 @@ DEPENDENCIES
   acts_as_list
   aws-sdk (~> 1.5.7)
   bcrypt-ruby (= 3.1.2)
+  bootstrap-colorpicker-rails
   bootstrap-sass
   bootstrap-switch-rails
   bootstrap-will_paginate (= 0.0.10)

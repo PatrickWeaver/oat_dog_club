@@ -1,6 +1,6 @@
 class CoversController < ApplicationController
 
-  def destroy
+  def remove
     session[:return_to] ||= request.referer
     cover = Cover.find(params[:id])
     cover.destroy
@@ -29,4 +29,33 @@ class CoversController < ApplicationController
     redirect_to session.delete(:return_to)
   end
 
+  def update
+    session[:return_to] ||= request.referer
+    cover = Cover.find(params[:id])
+    if cover.update_attributes(cover_params)
+      flash[:success] = "Cover updated"
+    else
+      flash[:danger] = "Cover not updated :("
+    end
+    redirect_to session.delete(:return_to)
+  end
+
+  def create
+    @zine = Zine.find(params[:cover][:id])
+    cover = @zine.create_cover(cover_params)
+
+    if cover.save
+      flash[:success] = "New Cover created!"
+      redirect_to zine_path(@zine)
+    else
+      flash[:danger] = "Cover didn't save"
+      redirect_to zine_path(@zine)
+    end
+  end
+
+  private
+
+    def cover_params
+      params.require(:cover).permit(:width, :border_color, :cover_image)
+    end
 end

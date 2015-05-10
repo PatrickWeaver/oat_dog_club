@@ -4,21 +4,26 @@
     <%= render partial: 'zines/edit_area' %>
 <% end %>
 
-<%= render partial: 'zines/title' %>
+<div id="zine-title">
+
+  <%= render partial: 'zines/title' %>
+
+</div>
 
 
-<%= render partial: 'zines/authors' %>
 
-<%= @zine.title %>
-<%= @zine.zine_contents.length %>
+<div id="below-title">
 
-<% if @zine_contents.any? %>
-  <%= will_paginate @zine_contents %>
-  <ol id="zine-contents" class="zines">
+  <%= render partial: 'zines/authors' %>
+
+  <% if @zine_contents.any? %>
     <%= will_paginate @zine_contents %>
-      <%= render partial: 'shared/zine_content', collection: @zine_contents %>
+    <ol id="zine-contents" class="zines">
+      <%= will_paginate @zine_contents %>
+        <%= render partial: 'shared/zine_content', collection: @zine_contents %>
 
-  </ol>
-  <%= will_paginate @zine_contents %>
-<% end %>
+    </ol>
+    <%= will_paginate @zine_contents %>
+  <% end %>
+</div>
 

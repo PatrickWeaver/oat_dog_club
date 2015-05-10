@@ -1,59 +1,55 @@
-<li id="image-<%= image.id  %>" class="zine-image-li" style="
-  border: 
-    <% if image.zine_content %>
-      <% if image.width > 100 %>
-        10px 
-      <% else %>
-        2px 
+  <% if image.zine_content %>
+  <% else %>
+<div class="paragraph-image-container">
+  <% end %>
+  <ul class="images-list">
+    <li id="image-<%= image.id  %>" class="zine-image-li" style="
+      border: 
+        <% if image.zine_content %>
+          <% if image.width > 100 %>
+            10px 
+          <% else %>
+            2px 
+          <% end %>
+          solid <%= image.zine_content.border_color %>;
+        <% else %>
+          none; margin: 
+          <% if image.width > 100 %>
+            10px; 
+          <% else %>
+            2px; 
+          <% end %>
+        <% end %>
+        max-width: 
+        <% if image.width > 100 %>
+          <%= image.width + 20 %>px;
+        <% else %>
+          <%= image.width + 2 %>px; font-size: 10px;
+        <% end %>
+      ">
+    
+      <% if @editor %>
+        <%= render partial: 'shared/image_buttons', :locals => {image: image } %>
       <% end %>
-      solid <%= image.zine_content.border_color %>;
-    <% else %>
-    none; margin: 
-      <% if image.width > 100 %>
-        10px; 
-      <% else %>
-        2px; 
+
+      <% if image.image_file.url != '' %>
+        <img src="<%= image.image_file.url %>" class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
       <% end %>
-    <% end %>
-  max-width: 
-    <% if image.width > 100 %>
-      <%= image.width + 20 %>px;
-    <% else %>
-      <%= image.width + 2 %>px; font-size: 10px;
-    <% end %>
-    ">
-  <% if @editor %>
-    <%= render partial: 'shared/image_buttons', :locals => {image: image } %>
+
+      <% if image.caption != '' %>
+        <div class="caption-container">
+            <p class="caption"><%= image.try(:caption) %></p>
+        </div>
+      <% end %>
+
+    </li>
+  </ul>
+  <% if image.zine_content %> 
+  <% else %>
+
+  <%= render partial: 'shared/paragraph_image_edit_boxes', :locals => {image: image } %>
+
+</div>
   <% end %>
 
-  <% if image.image_file.url != '' %>
-    <img src="<%= image.image_file.url %>" class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
-  <% end %>
-
-  <br>
-
-  <div class="infoblah background" style="color: black !important;" >
-
-    Image_id: <%= image.id %><br>
-    zc_id: <% if image.zine_content %><%= image.zine_content.id %><% end %><br>
-    url: <%= image.image_file.url %><br>
-    p ID: <%= image.paragraph_id %><br>
-    width: <%= image.width %><br>
-    display caption?
-      <% if image.display_caption %>
-        true
-      <% else %>
-        false
-      <% end %><br>
-    <% if image.display_caption %>caption: <%= image.try(:caption) %><br><% end %>
-     </div>
-
-  <% if image.display_caption %>
-    <div class="caption">
-      <%= image.try(:caption) %><%= link_to "image", image %><br>
-    </div>
-  <% end %>
-
-</li>
-
-<br><br>
+<br>

@@ -1,26 +1,49 @@
-<div class="zine-title-container" >
+<div class="zine-cover-container">
+  <div class="zine-title-container" >
   
   <div class="<% if @cover %>background<% end %> zine-title-block" >
 
   
   <% if @cover %>
     <% if @editor %>
-      <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove Cover!'.html_safe, {:controller => "covers", :action => "destroy", :id => @cover.id }, {:class => "btn btn-sm btn-warning remove-cover" }%>
+    <div class="remove-cover-resize-cover">
+      <button type="button" class="btn btn-sm btn-warning resize-cover">
+        <span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>
+      </button>
+      <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, {:controller => "covers", :action => "remove", :id => @cover.id }, {:class => "btn btn-sm btn-danger remove-cover" }%>
+      </div>
     <% end %>
+
 
     <img src="<%= @cover.cover_image.url %>" class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
   <% end %>
-
   <br>
 
 
   </div>
+  <div class="twin-boxes">
+    <% if @zine.show_title %>
+      <h1 class="zine-title twin-box">
+        <%= @zine.title %>
+      </h1>
+    <% end %>
+  
 
-  <% if @zine.show_title %>
-    <h1 class="zine-title">
-      <%= @zine.title %>
-    </h1>
-  <% end %>
+    
 
-  <%= render partial: 'zines/edit_title' %>
+
+
+  </div>
+</div>
+    <div class="edit-title-form invisible box">
+      <%= render partial: 'zines/edit_title' %>
+    </div>
+    <div class="new-cover-form invisible box">
+    <%= render partial: 'covers/new' %>
+    </div>
+    <% if @cover %>
+    <div class="cover-resize-form invisible box">
+      <%= render partial: 'shared/cover_resize' %>
+    </div>
+    <% end %>
 </div>

@@ -1,20 +1,58 @@
-<div class="zine-content-position-form">
-  <% if image.zine_content %>
-    <div class="btn btn-sm btn-warning">
-      <strong><%= image.zine_content.position %></strong>
+<div class="content-buttons">
+  
+    <div class="btn btn-sm btn-warning zine-content-edit-button">
+      <% if image.zine_content %><strong><%= image.zine_content.position %></strong> <% end %><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
     </div>
   
-    <%= link_to '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => image.zine_content.id, :direction => "up" }, {:class => "btn btn-sm btn-info" }%>
-    <%= link_to '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => image.zine_content.id, :direction => "down" }, {:class => "btn btn-sm btn-primary" }%>
-    <%= link_to '<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => image.zine_content.id, :direction => "top" }, {:class => "btn btn-sm btn-info" }%>
-    <%= link_to '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => image.zine_content.id, :direction => "bottom" }, {:class => "btn btn-sm btn-primary" }%>
+
+
+    <div class="zine-content-edit-buttons invisible">
+
+    <% if image.zine_content %>
+      <% if image.zine_content.position != 1 %>
+        <%= link_to '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => image.zine_content.id, :direction => "up" }, {:class => "btn btn-sm btn-info" }%>
+      <% end %>
+      <% if image.zine_content.position != @zine_contents.length %>
+      <%= link_to '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => image.zine_content.id, :direction => "down" }, {:class => "btn btn-sm btn-primary" }%>
+      <% end %>
+      <% if image.zine_content.position != 1 %>
+        <%= link_to '<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => image.zine_content.id, :direction => "top" }, {:class => "btn btn-sm btn-info" }%>
+      <% end %>
+      <% if image.zine_content.position != @zine_contents.length %>
+      <%= link_to '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => image.zine_content.id, :direction => "bottom" }, {:class => "btn btn-sm btn-primary" }%>
+      <% end %>
+      <button type="button" class="btn btn-sm btn-warning move-to-button">
+        <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+      </button>
     <% end %>
 
+      <%= link_to '<span class="glyphicon glyphicon-book" aria-hidden="true"></span>'.html_safe, {:controller => "covers", :action => "cover", :id => image.id }, {:class => "btn btn-sm btn-info" }%>
 
-    <%= link_to '<span class="glyphicon glyphicon-book" aria-hidden="true"></span>'.html_safe, {:controller => "covers", :action => "cover", :id => image.id }, {:class => "btn btn-sm btn-info" }%>
+    <% if image.zine_content %>
 
+      <button type="button" class="btn btn-sm btn-warning image-width-button">
+        <span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>
+      </button>
+
+      <button type="button" class="btn btn-sm btn-warning caption-button">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      </button>
+
+      <%= render partial: 'shared/border_button', :locals => {content: image.zine_content } %>
+
+    <% else %>
+
+      <button type="button" class="btn btn-sm btn-warning paragraph-image-width-button">
+        <span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>
+      </button>
+
+      <button type="button" class="btn btn-sm btn-warning paragraph-image-caption-button">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      </button>
+
+    <% end %>
 
     <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, {:controller => "images", :action => "destroy", :id => image.id}, {:class => "btn btn-sm btn-danger",  data: { confirm: "Delete Image?" } }%>
-  
+  </div>
 </div>
 

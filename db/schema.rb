@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507235144) do
+ActiveRecord::Schema.define(version: 20150508172149) do
 
   create_table "authorships", force: true do |t|
     t.integer  "user_id"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20150507235144) do
     t.integer  "paragraph_id"
     t.integer  "width",                   default: 400
     t.string   "caption"
-    t.boolean  "display_caption",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_file_name"

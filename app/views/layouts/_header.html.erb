@@ -1,30 +1,22 @@
 <header class="navbar navbar-fixed-top">
+  
   <div class="container">
-    <%= link_to "Oat Dog Club", root_path, id: "logo" %>
     <nav>
+
+    <div class="nav navbar-nav navbar-left">
+      <a href="/"><img class="oat-dog-logo" src="https://s3.amazonaws.com/oatdogclub/OatDogXS.png"></a><%= link_to "Oat Dog Club", root_path, class: "logo" %>
+    </div>
+
       <ul class="nav navbar-nav navbar-right">
-        <li><%= current_user.try(:name) %></li>
-        <li> * </li>
-        <li><% if current_user.try(:admin?) %>Admin, ID:<%= current_user.id %><% end %></li>
         <% if signed_in? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Zines <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-              <li><%= link_to "All", zines_path %><li>
-              <li><%= link_to "My", current_user %><li>
-              <li class="new-zine-menu">New!</li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to "Zines", zines_path %><li>
+          <li class="new-zine-menu nav-li"><a href="#">New Zine!</a></li>
         <% end %>
-          <li><%= link_to "Members", users_path %></li>
+          <li class="nav-li"><%= link_to "Zines", zines_path %></li>
+          <li class="nav-li"><%= link_to "Members", users_path %></li>
         <% if signed_in? %>
-          <li class="dropdown">
+          <li class="dropdown nav-li">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+              <%= current_user.try(:name) %>&nbsp;&nbsp;<span style="font-size: 75%;" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
@@ -36,13 +28,69 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Sign in", signin_path %></li>
+          <li class="nav-li"><%= link_to "Sign up!", signup_path %></li>
+          <li class="nav-li"><%= link_to "Sign in", signin_path %></li>
         <% end %>
 
       </ul>
+      
     </nav>
   </div>
 
 </header>
+
+<div>
+  <header class="phone-navbar navbar-fixed-top">
+    
+    <div class="container">
+      <nav>
+
+      <a href="/"><img class="phone-oat-dog-logo" src="https://s3.amazonaws.com/oatdogclub/OatDog500.png"></a>
+      <a href="/"><div class="phone-logo"></a>
+      Oat Dog Club
+      </div>
+
+      <ul class="phone-nav-ul">
+
+          <% if signed_in? %>
+
+            <li class="dropdown phone-nav-li phone-dropdown">
+
+              <a href="#" class="">
+                <%= current_user.try(:name) %>&nbsp;&nbsp;<span style="font-size: 75%;" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+              </a>
+            </li>
+
+            <li class="phone-nav-li"><a href="#">New Zine!</a></li>
+
+          <% else %>
+
+            <li class="phone-nav-li"><%= link_to "Sign in", signin_path %></li>
+            <li class="phone-nav-li"><%= link_to "Sign up!", signup_path %></li>
+            
+
+
+
+          <% end %>
+
+          <li class="phone-nav-li"><%= link_to "Members", users_path %></li>
+
+          <li class="phone-nav-li"><%= link_to "Zines", zines_path %></li>
+
+        </ul>
+
+  </header>
+<% if signed_in? %>
+  <div class="phone-dropdown-menu invisible">
+    <ul>
+      <%= link_to '<li class="phone-dropdown-nav">Profile</li>'.html_safe, current_user %>
+      <%= link_to '<li class="phone-dropdown-nav">Edit Membership</li>'.html_safe, edit_user_path(current_user) %>
+      <li class="divider phone-dropdown-nav"></li>
+      <%= link_to '<li class="phone-dropdown-nav">Sign out</li>'.html_safe, signout_path, method: "delete"  %>
+
+    </ul>
+  </div>
+</div>
+<% end %>
 
 <%= render 'zines/new' %>

@@ -1,15 +1,44 @@
-<div class="zine-content-position-form">
+<div class="content-buttons">
 
-  <div class="btn btn-sm btn-warning">
-    <strong><%= zine_content.position %></strong>
+  <div class="btn btn-sm btn-warning zine-content-edit-button">
+    <strong><%= zine_content.position %></strong> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
   </div>
-  <%= link_to '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "up" }, {:class => "btn btn-sm btn-info" }%>
-  <%= link_to '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "down" }, {:class => "btn btn-sm btn-primary" }%>
-  <%= link_to '<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "top" }, {:class => "btn btn-sm btn-info" }%>
-  <%= link_to '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "bottom" }, {:class => "btn btn-sm btn-primary" }%>
 
-  <% if zine_content.orderable_type == "Paragraph" %>
-    <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, {:controller => "paragraphs", :action => "destroy", :id => zine_content.orderable.id}, {:class => "btn btn-sm btn-danger",  data: { confirm: "Delete Paragraph?" } }%>
-  <% end %>
+  <div class="zine-content-edit-buttons invisible">
+
+    <% if zine_content.position != 1 %>
+      <%= link_to '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "up" }, {:class => "btn btn-sm btn-info" }%>
+    <% end %>
+    <% if zine_content.position != @zine_contents.length %>
+    <%= link_to '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "down" }, {:class => "btn btn-sm btn-primary" }%>
+    <% end %>
+    <% if zine_content.position != 1 %>
+      <%= link_to '<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "top" }, {:class => "btn btn-sm btn-info" }%>
+    <% end %>
+    <% if zine_content.position != @zine_contents.length %>
+    <%= link_to '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>'.html_safe, {:controller => "zine_contents", :action => "position", :id => zine_content.id, :direction => "bottom" }, {:class => "btn btn-sm btn-primary" }%>
+    <% end %>
+    <button type="button" class="btn btn-sm btn-warning move-to-button">
+      <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+    </button>
+
+    <%= render partial: 'shared/border_button', :locals => {content: zine_content } %>
+
+    <button type="button" class="btn btn-sm btn-success create-paragraph-image-button">
+      <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+    </button>
+
+    <% if zine_content.orderable.font_size < 100 %>
+      <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'.html_safe, {:controller => "paragraphs", :action => "font_size", :id => zine_content.orderable.id, :size => 2}, {:class => "btn btn-sm btn-info"} %>
+    <% end %>
+
+    <% if zine_content.orderable.font_size > 6 %>
+      <%= link_to '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'.html_safe, {:controller => "paragraphs", :action => "font_size", :id => zine_content.orderable.id, :size => -2}, {:class => "btn btn-sm btn-primary"} %>
+    <% end %>
+
+    <% if zine_content.orderable_type == "Paragraph" %>
+      <%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, {:controller => "paragraphs", :action => "destroy", :id => zine_content.orderable.id}, {:class => "btn btn-sm btn-danger",  data: { confirm: "Delete Paragraph?" } }%>
+    <% end %>
+  </div>
 </div>
 

@@ -7,7 +7,6 @@ class Cover < ActiveRecord::Base
   validates_with AttachmentContentTypeValidator, :attributes => :cover_image, :content_type => /\Aimage\/.*\Z/
   validates_with AttachmentSizeValidator, :attributes => :cover_image, :less_than => 5.megabytes
 
-  def cover_from_url(url)
-    self.cover_image = open(url)
-  end
+  validates :cover_image, presence: true
+
 end
