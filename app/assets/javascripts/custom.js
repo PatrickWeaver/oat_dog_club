@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(window).load(function(){
 
   $( ".new-zine-menu" ).click(function() {
     $( ".new-zine-form" ).toggleClass( "invisible" );
