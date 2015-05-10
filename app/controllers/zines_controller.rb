@@ -30,7 +30,7 @@ class ZinesController < ApplicationController
       @cover = @zine.cover
       @new_cover = Cover.new
       @authors = @zine.users.to_a
-      @zine_contents = @zine.zine_contents.paginate(page: params[:page])
+      @zine_contents = @zine.zine_contents.order("position").paginate(page: params[:page])
       @paragraphs = @zine.paragraphs.paginate(page: params[:page])
       @images = @zine.images.where(:paragraph_id => nil).paginate(page: params[:page])
       def get_images_for_paragraph(paragraph)
