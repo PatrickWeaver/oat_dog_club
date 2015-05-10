@@ -61,7 +61,6 @@
               </a>
             </li>
 
-            <li class="phone-nav-li"><a href="#">New Zine!</a></li>
 
           <% else %>
 
@@ -76,6 +75,9 @@
           <li class="phone-nav-li"><%= link_to "Members", users_path %></li>
 
           <li class="phone-nav-li"><%= link_to "Zines", zines_path %></li>
+          <% if signed_in? %>
+          <li class="phone-nav-li new-zine-menu"><a href="#">New Zine!</a></li>
+          <% end %>
 
         </ul>
 
