@@ -35,7 +35,7 @@
           <% end %>
         <% end %>
         <%= f.label "Max Width:" %>
-        <%= f.number_field :width %>
+        <%= f.number_field :width, within: 50...1600 %>
         <%= f.hidden_field :id, value: @zine.id %>
 
         <% if paragraph %>

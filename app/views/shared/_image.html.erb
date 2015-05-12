@@ -33,7 +33,17 @@
       <% end %>
 
       <% if image.image_file.url != '' %>
-        <img src="<%= image.image_file.url %>" class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
+        <img src="
+          <% if image.width < 501 %>
+            <%= image.image_file.url(:medium) %>
+          <% elsif image.width < 801 %>
+            <%= image.image_file.url(:large) %>
+          <% elsif image.width < 1201 %>
+            <%= image.image_file.url(:xlarge) %>
+          <% else %>
+            <%= image.image_file.url(:full) %>
+          <% end %>
+          " class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
       <% end %>
 
       <% if image.caption != '' %>

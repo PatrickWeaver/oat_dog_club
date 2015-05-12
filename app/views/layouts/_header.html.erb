@@ -46,53 +46,55 @@
       <nav>
 
       <a href="/"><img class="phone-oat-dog-logo" src="https://s3.amazonaws.com/oatdogclub/OatDog500.png"></a>
-      <a href="/"><div class="phone-logo"></a>
-      Oat Dog Club
-      </div>
-
+      <a href="/">
+        <div class="phone-logo">
+          Oat Dog Club
+        </div>
+      </a>
       <ul class="phone-nav-ul">
 
           <% if signed_in? %>
 
-            <li class="dropdown phone-nav-li phone-dropdown">
-
-              <a href="#" class="">
-                <%= current_user.try(:name) %>&nbsp;&nbsp;<span style="font-size: 75%;" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            <li class="dropdown phone-nav-li phone-dropdown" style="margin-top: -5px;">
+              <a href="#">
+                <%= current_user.try(:name) %>&nbsp;&nbsp;&nbsp;<span style="font-size: 75%; vertical-align: middle; margin-top: -5px;" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
               </a>
             </li>
 
 
           <% else %>
 
-            <li class="phone-nav-li"><%= link_to "Sign in", signin_path %></li>
-            <li class="phone-nav-li"><%= link_to "Sign up!", signup_path %></li>
-            
-
-
-
-          <% end %>
+          <li class="phone-nav-li"><%= link_to "Sign in", signin_path %></li>
+          <li class="phone-nav-li"><%= link_to "Sign up!", signup_path %></li>
 
           <li class="phone-nav-li"><%= link_to "Members", users_path %></li>
 
           <li class="phone-nav-li"><%= link_to "Zines", zines_path %></li>
-          <% if signed_in? %>
-          <li class="phone-nav-li new-zine-menu"><a href="#">New Zine!</a></li>
+            
+            
+
           <% end %>
 
         </ul>
 
   </header>
-<% if signed_in? %>
-  <div class="phone-dropdown-menu invisible">
-    <ul>
-      <%= link_to '<li class="phone-dropdown-nav">Profile</li>'.html_safe, current_user %>
-      <%= link_to '<li class="phone-dropdown-nav">Edit Membership</li>'.html_safe, edit_user_path(current_user) %>
-      <li class="divider phone-dropdown-nav"></li>
-      <%= link_to '<li class="phone-dropdown-nav">Sign out</li>'.html_safe, signout_path, method: "delete"  %>
+  <% if signed_in? %>
+    <div class="phone-dropdown-menu invisible">
+      <ul>
+        <li class="new-zine-menu"><a href="#">New Zine!</a></li>
+        <li class=""><%= link_to "Zines", zines_path %></li>
+        <li class=""><%= link_to "Members", users_path %></li>
+        <%= link_to '<li class="phone-dropdown-nav">Profile</li>'.html_safe, current_user %>
+        <%= link_to '<li class="phone-dropdown-nav">Edit Membership</li>'.html_safe, edit_user_path(current_user) %>
+        <li class="divider phone-dropdown-nav"></li>
+        <%= link_to '<li class="phone-dropdown-nav">Sign out</li>'.html_safe, signout_path, method: "delete"  %>
 
-    </ul>
-  </div>
+      </ul>
+    </div>
+    <div class="grayout invisible" %>
+    </div>
+    <% end %>
 </div>
-<% end %>
+
 
 <%= render 'zines/new' %>

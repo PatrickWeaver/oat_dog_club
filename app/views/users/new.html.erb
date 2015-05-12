@@ -4,32 +4,28 @@
   <%= image_tag("review-app.gif", :class => "review-gif", :alt => "Loading . . .") %>
   <h1 class="review-text">Oat Dog is reviewing your application!</h1>
 </div>
+
 <div id="sign-up-form" class="background">
   <h1>Sign up for the club!</h1>
 
-  <div class="">
-    <div class="">
       <%= form_for(@user, multipart:true) do |f| %>
 
         <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.text_field :name %>
 
         <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
+        <%= f.email_field :email %>
 
         <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.password_field :password %>
 
         <%= f.label :password_confirmation, "Password again . . ." %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-        <div class="field">
-          <%= f.label :profile_picture, "Profile Image (optional)" %>
+        <%= f.password_field :password_confirmation %>
+        
+        <%= f.label :profile_picture, "Profile Image (optional)" %>
+        <div class="field file-field">  
           <%= f.file_field :profile_picture %>
         </div>
         <%= f.submit "Join the club!", class: "btn btn-primary" %>
       <% end %>
-      
-    </div>
-  </div>
 </div>

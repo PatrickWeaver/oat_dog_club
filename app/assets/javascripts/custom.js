@@ -2,6 +2,8 @@ $(window).load(function(){
 
   $( ".new-zine-menu" ).click(function() {
     $( ".new-zine-form" ).toggleClass( "invisible" );
+    $( ".phone-dropdown-menu" ).toggleClass( "invisible" );
+    $( ".grayout" ).toggleClass( "invisible" );    
   });
 
   $( ".new-paragraph-button" ).click(function() {
@@ -157,6 +159,10 @@ $(window).load(function(){
     $(".remove-author-button").addClass("btn-danger").removeClass("btn-warning" );
     $(".dont-remove-author-button").addClass("invisible");
 
+  });
+
+  $( ".grayout" ).click(function() {
+    $(".phone-dropdown-menu").addClass("invisible");
   });
 
 

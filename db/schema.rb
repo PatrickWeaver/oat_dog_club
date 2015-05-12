@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508172149) do
+ActiveRecord::Schema.define(version: 20150512023753) do
 
   create_table "authorships", force: true do |t|
     t.integer  "user_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150508172149) do
 
   create_table "covers", force: true do |t|
     t.integer  "zine_id"
-    t.integer  "width",                    default: 400
+    t.integer  "width",                    default: 800
     t.string   "border_color",             default: "#000000"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150508172149) do
 
   create_table "images", force: true do |t|
     t.integer  "paragraph_id"
-    t.integer  "width",                   default: 400
+    t.integer  "width",                   default: 800
     t.string   "caption"
     t.datetime "created_at"
     t.datetime "updated_at"

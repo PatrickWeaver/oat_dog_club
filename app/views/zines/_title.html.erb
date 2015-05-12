@@ -15,7 +15,17 @@
     <% end %>
 
 
-    <img src="<%= @cover.cover_image.url %>" class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
+    <img src="
+          <% if @cover.width < 501 %>
+            <%= @cover.cover_image.url(:medium) %>
+          <% elsif @cover.width < 801 %>
+            <%= @cover.cover_image.url(:large) %>
+          <% elsif @cover.width < 1201 %>
+            <%= @cover.cover_image.url(:xlarge) %>
+          <% else %>
+            <%= @cover.cover_image.url(:full) %>
+          <% end %>
+          " class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
   <% end %>
   <br>
 

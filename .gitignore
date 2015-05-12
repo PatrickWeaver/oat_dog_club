@@ -20,3 +20,8 @@ doc/
 .secret
 # Ignore application configuration
 /config/application.yml
+
+
+#ignore other project fils
+/other
+
