@@ -16,7 +16,7 @@
 
 
     <img src="
-        <% if @cover.date_created.to_i < 1431431658 %>
+        <% if @cover.created_at.to_i < 1431431658 %>
             <% @cover.cover_image.url %>
           <% else %>
           <% if @cover.width < 501 %>

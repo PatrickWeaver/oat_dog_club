@@ -34,7 +34,7 @@
 
       <% if image.image_file.url != '' %>
         <img src="
-          <% if image.date_created.to_i < 1431431658 %>
+          <% if image.created_at.to_i < 1431431658 %>
             <% image.image_file.url %>
           <% else %>
             <% if image.width < 501 %>
