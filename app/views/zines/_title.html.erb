@@ -16,8 +16,8 @@
 
 
     <img src="
-        <% if image.date_created.to_i < 1431431658 %>
-            <% image.image_file.url %>
+        <% if @cover.date_created.to_i < 1431431658 %>
+            <% @cover.cover_image.url %>
           <% else %>
           <% if @cover.width < 501 %>
             <%= @cover.cover_image.url(:medium) %>
