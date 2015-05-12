@@ -34,17 +34,21 @@
 
       <% if image.image_file.url != '' %>
         <img src="
-          <% if image.width < 501 %>
-            <%= image.image_file.url(:medium) %>
-          <% elsif image.width < 801 %>
-            <%= image.image_file.url(:large) %>
-          <% elsif image.width < 1201 %>
-            <%= image.image_file.url(:xlarge) %>
+          <% if image.date_created.to_i < 1431431658 %>
+            <% image.image_file.url %>
           <% else %>
-            <%= image.image_file.url(:full) %>
+            <% if image.width < 501 %>
+              <%= image.image_file.url(:medium) %>
+            <% elsif image.width < 801 %>
+              <%= image.image_file.url(:large) %>
+            <% elsif image.width < 1201 %>
+              <%= image.image_file.url(:xlarge) %>
+            <% else %>
+              <%= image.image_file.url(:full) %>
+            <% end %>
+            " class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
+            <% end %>
           <% end %>
-          " class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
-      <% end %>
 
       <% if image.caption != '' %>
         <div class="caption-container">

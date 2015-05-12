@@ -16,6 +16,9 @@
 
 
     <img src="
+        <% if image.date_created.to_i < 1431431658 %>
+            <% image.image_file.url %>
+          <% else %>
           <% if @cover.width < 501 %>
             <%= @cover.cover_image.url(:medium) %>
           <% elsif @cover.width < 801 %>
@@ -26,7 +29,8 @@
             <%= @cover.cover_image.url(:full) %>
           <% end %>
           " class="zine-cover-image" style="max-width:<%= @cover.width %>px; height: auto;">
-  <% end %>
+          <% end %>
+        <% end %>
   <br>
 
 
