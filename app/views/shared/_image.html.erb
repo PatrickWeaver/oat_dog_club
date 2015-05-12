@@ -35,7 +35,7 @@
       <% if image.image_file.url != '' %>
         <img src="
           <% if image.created_at.to_i < 1431431658 %>
-            <% image.image_file.url %>
+            <%= image.image_file.url %>
           <% else %>
             <% if image.width < 501 %>
               <%= image.image_file.url(:medium) %>
@@ -46,9 +46,9 @@
             <% else %>
               <%= image.image_file.url(:full) %>
             <% end %>
-            " class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
-            <% end %>
           <% end %>
+            " class="zine-image" style="height: auto; max-width: <%= image.width %>px;">
+       <% end %>
 
       <% if image.caption != '' %>
         <div class="caption-container">
