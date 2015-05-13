@@ -16,7 +16,7 @@
         <%= f.text_field :border_color, :placeholder => "#000000", :class => "colorpicker" %>
         <% end %>
         <%= f.label "Width:" %>
-        <%= f.text_field :width, within: 50...1600 %> %>
+        <%= f.text_field :width, within: 50...1600 %>
         <%= f.hidden_field :id, value: @zine.id %>
 
         <%= f.submit "Add!", class: "btn btn-primary" %>
