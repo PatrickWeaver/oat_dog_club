@@ -13,7 +13,14 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 4 }
 
-  has_attached_file :profile_picture, :default_url => "https://s3.amazonaws.com/oatdogclub/oat-dog-default-small.png"
+  has_attached_file :profile_picture, :default_url => "https://s3.amazonaws.com/oatdogclub/oat-dog-default-small.png", styles: {
+    thumb: '150x150>',
+    square: '300x300#',
+    medium: '500x500>',
+    large: '800x800>',
+    xlarge: '1200x1200>',
+    full: '1600x1600>'
+  }
   validates_with AttachmentContentTypeValidator, :attributes => :profile_picture, :content_type => /\Aimage\/.*\Z/
   validates_with AttachmentSizeValidator, :attributes => :profile_picture, :less_than => 3.megabytes
 

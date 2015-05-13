@@ -7,7 +7,13 @@
       </h1>
       <div id="user-info-profile">
       <% if @user.profile_picture.url != '' %>
-        <img src="<%= @user.profile_picture.url %>" height="200" >
+        <img src="
+        <% if @user.created_at.to_i < 1431489640 %>
+          <%= @user.profile_picture.url %>
+        <% else %>
+          <% @user.profile_picture.url(:large) %>
+        <% end %>
+      " height="200" >
       <% end %>
       </div>
       <div id="user-zines-profile">
