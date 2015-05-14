@@ -2,7 +2,7 @@ $(window).load(function(){
 
   $( ".new-zine-menu" ).click(function() {
     $( ".new-zine-form" ).toggleClass( "invisible" );
-    $( ".phone-dropdown-menu" ).toggleClass( "invisible" );
+    $( ".phone-dropdown-menu" ).addClass( "invisible" );
     $( ".grayout" ).toggleClass( "invisible" );    
   });
 
