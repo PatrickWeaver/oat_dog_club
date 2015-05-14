@@ -380,7 +380,7 @@ aside {
     ul.user-zines {
     width: 100%;
     display: block;
-    list-stype-type: none;
+    list-style-type: none;
     }
   }
 }
@@ -455,7 +455,7 @@ ul.user-zines {
   margin: 0 10%;
 }
 
-input[type=text], input[type=password], input[type=number], textarea, .uneditable-input {
+input[type=text], input[type=password], input[type=number], input[type=email], textarea, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
