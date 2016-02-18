@@ -32,7 +32,7 @@ OatDogClub::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => ENV['s3BUCKET'],
+      :bucket => ENV['oat_dog_club_s3BUCKET'],
       :access_key_id => ENV['AWSAccessKeyId'],
       :secret_access_key => ENV['AWSSecretKey']
     }

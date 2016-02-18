@@ -1,4 +1,5 @@
 class CoversController < ApplicationController
+  before_action :signed_in_user
 
   def remove
     session[:return_to] ||= request.referer

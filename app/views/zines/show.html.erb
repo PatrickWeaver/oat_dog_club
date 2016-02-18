@@ -19,7 +19,6 @@
   <% if @zine_contents.any? %>
     <%= will_paginate @zine_contents %>
     <ol id="zine-contents" class="zines">
-      <%= will_paginate @zine_contents %>
         <%= render partial: 'shared/zine_content', collection: @zine_contents %>
 
     </ol>

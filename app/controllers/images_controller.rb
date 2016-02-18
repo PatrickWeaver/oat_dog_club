@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
-
+  before_action :signed_in_user, only:[:new, :create, :destroy, :update]
+  
   def show
     @image = Image.find(params[:id])
   end

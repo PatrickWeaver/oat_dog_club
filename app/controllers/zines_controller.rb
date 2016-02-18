@@ -1,5 +1,5 @@
 class ZinesController < ApplicationController
-  before_action :signed_in_user,  only: [:destroy, :publish, :create, :update]
+  before_action :signed_in_user,  only: [:destroy, :publish, :create, :update, :title, :authors, :remove_author, :add_author, :font_size_up, :font_size_down, :delete]
 
   def create
     @user = current_user

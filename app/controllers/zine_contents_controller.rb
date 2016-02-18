@@ -1,4 +1,5 @@
 class ZineContentsController < ApplicationController
+  before_action :signed_in_user, only:[:position, :hide_border_color, :update]
 
   def index
     @zine_contents = ZineContent.paginate(page: params[:page])
